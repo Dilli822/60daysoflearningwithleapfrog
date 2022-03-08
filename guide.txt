@@ -1,0 +1,7 @@
+
+# Install Typescript
+--- windows (g means globally)
+--- npm i -g typescript 
+
+--- mac os
+---- sudo npm i -g typescript
