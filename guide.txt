@@ -5,3 +5,13 @@
 
 --- mac os
 ---- sudo npm i -g typescript
+
+# Compile the typescript file
+---- tsc index.ts 
+-- or whatever the name of your Typescript file
+
+# check your Typescript version
+--tsc --version
+
+# run the js file with node command
+-- node index.js
