@@ -1,0 +1,21 @@
+.whiteBg {
+  background: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+.ant-layout-sider, .ant-layout-sider-children {
+  background: #fff;
+}
+
+.ant-layout-sider-children {
+  position: fixed;
+  width: 200px;
+}
+
+.customNavHeader > button {
+  margin: 0 0.7rem;
+}
+/*# sourceMappingURL=country.css.map */

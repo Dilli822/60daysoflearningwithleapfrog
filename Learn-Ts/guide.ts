@@ -1,3 +1,4 @@
+import { SystemSecurityUpdate } from "@mui/icons-material"
 
 # What is Typescript?
 --> It is a STRICT Synatical superset of Javascript just like Sass is superset of CSS. That means all 
@@ -56,3 +57,16 @@ which is pure object oriented with classes and interfaces.
 
 # run the js file with node command
 -- node index.js
+
+
+
+
+------ DAY -2 
+# Basic Folder Structure of Typescript
+---> After the installation of Typescript I am using VSCode which is meant to be best IDE for Typescript 
+-- but you can use any IDE 
+-- Let's create a folder named Learn-Typescript
+
+Learn-Typescript
+  |--- main.ts
+  |
