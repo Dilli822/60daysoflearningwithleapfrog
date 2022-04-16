@@ -1,0 +1,57 @@
+
+
+# Basic Folder Structure 
+-- Learn-Typescript
+  -- main.ts
+
+  
+# Before compilation
+Learn-Typescript
+|- main.ts
+
+# How to compile the Typescript file to Javascript?
+-- go to terminal or command then just type 
+-- tsc main.ts (your file name may be different)
+
+# After compilation 
+Learn-Typescript
+|- main.ts
+|- main.js
+
+** Notes: Eventhough Typescript finds faults while checking it will completely compile file to Javascript file with pure warnings.
+
+
+# -- Watch mode in compilation of Typescript
+-- we can watch the number of errors during compilation of Ts to Js with
+-- this command will watch and show the errors 
+-- tsc main.ts -w 
+
+
+
+#### tsconfig.json ####
+--- this tsconfig.json file shows or if found it means our Typescript's root directory is defined 
+--- tsconfig.json means we writing the objects in json format which defines where is our root Typescript project located and where are the compiled ones located
+
+# let's create a small tsconfig.json where we define where are Typescript files will be and where our Compiled Javascript files.
+-- inside the tsconfig.json we write the objects,
+
+--- Here src folder will be root directory where our Typescript files will be
+--- and out directory means all our complied Javascript files 
+{
+    "compilerOptions":{
+        "rootDir": "./src",
+        "outDir": "./dist"
+    }
+}
+
+** Note: Folder Structure after tsconfig.json will be
+Learn-Typescript
+---src
+   |-- main.ts
+-- dist 
+   |-- main.js
+
+--- Why tsconfig.json?
+--- working on small project may not be problematic but if we are working on large projects with many ts files it may be confusion 
+and senseless to compile every Typescript file with command tsc compile or with the help of IDE 
+--But with the tsconfig.json files it will be much easier to store and compile the Ts files at particular directory
