@@ -85,7 +85,9 @@ myName = []
 
 /* # Day -4 
 --- Functions in Typescript
---- 
+--- Making our code more explicit
+--- Declaring the type of function and parameters
+--- working closely with typescript rules to make our code more safer
  */
 
 //  How do write Function in Ts?
@@ -161,3 +163,52 @@ console.log(thirdFunction(45,true));
  */
 
 //  Note: We are using the tsc -w which is watching all our error or check your console.
+
+/***** IT IS BETTER TO ADD EXPLICITY TO OUR CODE WITH TS */
+// For example It is better to tell the function what It will return 
+
+/*** This function is explicity written stating that function is constant which takes
+ * parameters that are strings and function itself is returning or is string function
+ * this will be more precise and it will decrease the chances of getting bugs and errors
+ */
+const getFullName = (name: string, surname: string):string => {
+    return name + " " + surname;
+}
+
+console.log(getFullName("Dilli", "Hang"))
+
+
+/** 
+ *  Day-5 
+   - Typescript understands object by default 
+   - Interfaces 
+ */
+
+
+/* Let's say we have user object 
+   which holds name and age
+   below the code we see two user which are user and user2
+   that must hold name and age but mistakely user has not got the age
+   so in this js will not help us and we may not know that the age
+   is missing or required for user2 for such cases Typescript comes to resuce we use
+   special powerful feature of Ts which is called interface.
+*/
+
+/** Technically this code is correct **/
+const user = {
+    name: "Dilli" ,
+    age: 23,
+}
+
+const user2 = {
+    name: "Hari",
+}
+
+/*** Interface --
+ * What is Interface?
+ * 
+ * 
+ * The only job of an interface in TypeScript is to describe a type. While class and function deal with implementation,
+ * interface helps us keep our programs error-free by providing information about the shape of the data we work with.
+ */
+   
