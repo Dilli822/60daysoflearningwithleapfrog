@@ -70,7 +70,9 @@ var myName = "Dilli";
 myName = [];
 /* # Day -4
 --- Functions in Typescript
----
+--- Making our code more explicit
+--- Declaring the type of function and parameters
+--- working closely with typescript rules to make our code more safer
  */
 //  How do write Function in Ts?
 var firstFunction = function (name, age) {
@@ -133,3 +135,130 @@ console.log(thirdFunction(45, true));
  * the user name and phone number then this type of function may be the best to use.
  */
 //  Note: We are using the tsc -w which is watching all our error or check your console.
+/***** IT IS BETTER TO ADD EXPLICITY TO OUR CODE WITH TS */
+// For example It is better to tell the function what It will return 
+/*** This function is explicity written stating that function is constant which takes
+ * parameters that are strings and function itself is returning or is string function
+ * this will be more precise and it will decrease the chances of getting bugs and errors
+ */
+var getFullName = function (name, surname) {
+    return name + " " + surname;
+};
+console.log(getFullName("Dilli", "Hang"));
+/**
+ *  Day-5
+   - Typescript understands object by default
+   - Interfaces
+   - Use/Importance of Interface
+   - Errors in Interface
+   - Entity in Ts Interface
+*/
+/* Let's say we have user object
+   which holds name and age
+   below the code we see two user which are user and user2
+   that must hold name and age but mistakely user has not got the age
+   so in this js will not help us and we may not know that the age
+   is missing or required for user2 for such cases Typescript comes to resuce we use
+   special powerful feature of Ts which is called interface.
+*/
+/** Technically this code is correct **/
+var user = {
+    name: "Dilli",
+    age: 23
+};
+var user2 = {
+    name: "Hari"
+};
+/*** Interface --
+ * What is Interface?
+ * /
+ 
+ /*
+ * An interface is a syntactical contract that an entity should conform to. In other words, an interface defines the syntax that any entity must adhere to.
+ * It helps to describe the entities.
+ * It define properties, methods, and events, which are the members of the interface.
+ * The only job of an interface in TypeScript is to describe a type. While class and function deal with implementation,
+ * interface helps us keep our programs error-free by providing information about the shape of the data we work with.
+ */
+/** Remember this should be the explicit form of above code */
+var userA = {
+    name: "Ram",
+    age: 23
+};
+var userB = {
+    name: "Shyam"
+};
+var user = {
+    name: "Moster",
+    age: 30
+};
+var user2 = {
+    name: "Jack"
+};
+var userAlpha = {
+    name: "Jedel",
+    age: 25
+};
+// Now we get type interface here const userBeta: EgUser
+var userBeta = {
+    name: "Jacky"
+};
+// It's time to log some information on the console.
+console.log(userAlpha.name);
+// Ts catching the error 
+// error is Property 'namee' does not exist on type 'EgUser'. Did you mean 'name'?
+console.log(userAlpha.namee);
+;
+// After Adding getMessage() function we are getting all errors everywhere on objects
+// this is error --- Property 'getMessage' is missing in type '{ name: string; }' but required in type 'exUser'
+// simply adding and returning the correct data type inside the objects we can solve this
+var userX = {
+    anotherName: "dilli",
+    age: 23,
+    getMessage: function () {
+        return "Hello I am ";
+    }
+};
+var userY = {
+    anotherName: "Dipen",
+    getMessage: function () {
+        return "Hello I am ";
+    }
+};
+console.log(userY.anotherName);
+// we can get the created functions
+console.log(userY.getMessage());
+var world = {
+    anotherName: "dilli",
+    getMessage: function () {
+        return "Hello I am ";
+    }
+};
+// Note: Always avoid clashing of naming between interface and classes
+// for eg: both are going to have same name 
+Class;
+User;
+{ }
+/**
+ * Unions in Typescript
+ *
+ * Normally we declare the datatype in Typescript in this way
+ *
+ * let username: string = "dilli";
+ *
+ * BUT WHAT IF I WANT STRING AS WELL AS NUMBER DATA TYPE ?
+ * FOR THAT UNIONS COMES TO RESCUE which will allow us to
+ * provide string or number to the variable data type
+ */
+var username = "Dilli";
+//  this is the way of writing the union
+// so what exactly happens here is that newusername may be string or number as
+// as we have provided number 45 so it will number by default
+var newusername = 45;
+//  in this errorMessage variable we have either string or null value
+// be default we are setting null as value
+var errorMessage = null;
+//  what if we didnot set the null 
+//  IT WILL BE UNDEFINED AND VERY BAD PRACTICE TO KEEP IT
+//  SO IT IS BEST PRACTICE TO KEEP ANY DATA TYPE BY DEFAULT
+var errorMessages;

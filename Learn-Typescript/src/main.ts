@@ -182,8 +182,10 @@ console.log(getFullName("Dilli", "Hang"))
  *  Day-5 
    - Typescript understands object by default 
    - Interfaces 
- */
-
+   - Use/Importance of Interface
+   - Errors in Interface
+   - Entity in Ts Interface
+*/
 
 /* Let's say we have user object 
    which holds name and age
@@ -206,9 +208,323 @@ const user2 = {
 
 /*** Interface --
  * What is Interface?
- * 
- * 
+ * /
+ 
+ /* 
+ * An interface is a syntactical contract that an entity should conform to. In other words, an interface defines the syntax that any entity must adhere to.
+ * It helps to describe the entities.
+ * It define properties, methods, and events, which are the members of the interface.
  * The only job of an interface in TypeScript is to describe a type. While class and function deal with implementation,
  * interface helps us keep our programs error-free by providing information about the shape of the data we work with.
  */
-   
+
+/** Remember this should be the explicit form of above code */
+ const userA: {name: string, age: number} = {
+    name: "Ram" ,
+    age: 23,
+}
+
+const userB: {name: string, age:number} = {
+    name: "Shyam",
+}
+
+/* each function has name and age which are string and number 
+   we get error on const user2 
+   -- Cannot redeclare block-scoped variable 'user2'
+   -- Property 'age' is missing in type '{name: string;}' but required in type '{name: string, age:number}'
+
+
+/** Remember it will be headache to repeat same code and type same as userA and userB so what we 
+ * do is we user interface of Typescript
+ *  */
+interface User {
+    name: string;
+    age: number;
+}
+
+const user: User = {
+    name: "Moster",
+    age: 30,
+}
+
+const user2: User = {
+    name: "Jack",
+}
+
+/* Now we get same error....   
+   we get error on const user2 
+   -- Cannot redeclare block-scoped variable 'user2'
+   -- Property 'age' is missing in type '{name: string;}' but required in type '{name: string, age:number}'
+**/
+
+/** This is much important as we are desigining our software architecture right? so
+ * it is important to define the REQUIRED Numbers of entities inside the interface which 
+ * can cover overall the requirements needs so that it won't break apart with better communication of our codes(entity)
+ * 
+ */
+
+ /** Tricks/Hack for making our interface more efficient and handy */
+ /** Not all the Time we need name and age both from users so what can we do as we
+  * may need age but not name and name but not age so for that Typescript has provided us 
+  * best option to do with just ? mark allow us to be mandatory or not.
+  */
+
+  interface EgUser {
+    name: string;
+    age?: number;
+}
+
+const userAlpha: EgUser = {
+    name: "Jedel",
+    age: 25,
+}
+
+// Now we get type interface here const userBeta: EgUser
+const userBeta: EgUser = {
+    name: "Jacky",
+}
+
+// It's time to log some information on the console.
+console.log(userAlpha.name);
+
+// Ts catching the error 
+// error is Property 'namee' does not exist on type 'EgUser'. Did you mean 'name'?
+console.log(userAlpha.namee);
+
+
+/*
+ Day -6 - Interfaces Continued.........
+        - Functions in Typescript + Avoiding Name Collisions of Classes & Interfaces
+        - Unions in Typescript 
+        - Good & Bad Practices of writing the Unions in Ts
+*/
+
+interface customUser {
+    anotherName: string;
+    age?: number;
+
+    // simply this is the way to declare the functions in objects
+    // with returned value type as string
+    getMessage(): string;
+};
+
+
+// After Adding getMessage() function we are getting all errors everywhere on objects
+// this is error --- Property 'getMessage' is missing in type '{ name: string; }' but required in type 'exUser'
+// simply adding and returning the correct data type inside the objects we can solve this
+const userX: customUser = {
+    anotherName: "dilli",
+    age: 23,
+    getMessage() {
+        return "Hello I am ";
+    },
+};
+
+const userY: customUser = {
+    anotherName: "Dipen",
+    getMessage() {
+        return "Hello I am " ;
+    },
+};
+
+console.log(userY.anotherName);
+// we can get the created functions
+console.log(userY.getMessage());
+
+const world: customUser = {
+    anotherName: "dilli",
+    getMessage() {
+        return "Hello I am " ;
+    },
+};
+
+// Note: Always avoid clashing of naming between interface and classes
+// for eg: both are going to have same name 
+Class User{}
+
+interface User{
+
+}
+
+// it is best practie to give interface User as name UserInterface so
+// that it will be easy to read and understand
+
+interface UserInterface {
+    name: string,
+    age: number,
+}
+
+/**
+ * Unions in Typescript
+ * 
+ * Normally we declare the datatype in Typescript in this way
+ * 
+ * let username: string = "dilli";
+ * 
+ * BUT WHAT IF I WANT STRING AS WELL AS NUMBER DATA TYPE ?
+ * FOR THAT UNIONS COMES TO RESCUE which will allow us to 
+ * provide string or number to the variable data type
+ */
+
+ let username: string = "Dilli";
+
+//  this is the way of writing the union
+// so what exactly happens here is that newusername may be string or number as
+// as we have provided number 45 so it will number by default
+ let newusername: string | number = 45;
+
+//  in this errorMessage variable we have either string or null value
+// be default we are setting null as value
+
+ let errorMessage: string | null = null;
+
+//  what if we didnot set the null 
+//  IT WILL BE UNDEFINED AND VERY BAD PRACTICE TO KEEP IT
+//  SO IT IS BEST PRACTICE TO KEEP ANY DATA TYPE BY DEFAULT
+let errorMessages: string | null;
+
+
+/**
+ * Day - 7 - Continue Union in Typescript
+ *         - Interfaces in Union
+ *         - functions in Union 
+ *         - Passing Union Type to Arrays
+ */
+
+// What is Union in Ts?
+/* Union is a operator. It define a variable which can have multiple types of values.
+   It can combine one or two different types of data (i.e., number, string, etc.) in a single type,
+   which is called a union type. 
+   Union types are a powerful way to express a variable with multiple types.
+   We use pipe('|') symbol to combine two or more data types to achieve Union type.
+   syntax: (type1|type2|type3|....|type-n)
+   Union operator always combine the data type.
+* 
+*/
+
+interface customUsers {
+    firstName: string
+    middleName?: string
+    surName: string
+}
+
+let customerName: string = "Peter";
+let customerPageNumber: string | number = "0414";
+
+// This is competely fine to write or insert the interface inside the unions within a variables 
+let customerFullName: customUsers | null = null;
+
+/*** This One is Disaster Please donot do this! This is very bad practice It doesnot ensure the security of your code. */
+let customerFullNameIs: customUsers | null | undefined | string | number | string[] | object;
+
+//  Passing Union Type in Function Parameter
+//  Down below we have passed value as parameter which holds unions of number and string
+//  we have applied typeof which finds the data type of value and strictly compare the argument value
+// in this way we can use unions inside the function
+function display(value:(number | string)){
+    if(typeof(value) === "number")
+        console.log("The given value is number data type!");
+    
+    else if(typeof(value) === "string")
+        console.log("The given value is of string data type!"); 
+}
+
+display(123);
+display("this is string");
+
+/** Passing Union Type to Arrays  */
+
+// we can use unions declaring the arrays types as we have discussed earlier
+// here firstArrayType can be string of number and string of array
+let firstArrayType: number[] | string[];
+let i: number;
+let j: number;
+
+firstArrayType = [0,1,2,3,4,5,6,7,8];
+console.log("This is Array of Number type: ");
+
+
+// we are using the for loop and we have i variale holding number datatype
+// and we are looping the array of number and string with i and printing it on the console
+// Examples: 
+for(i = 0; i < firstArrayType.length; i++){
+    console.log(firstArrayType[i]);
+}
+
+firstArrayType= ["string", "datatype", "in", "secondArray"];
+console.log("This is string array");
+
+for(j = 0; j < firstArrayType.length; j++){
+    console.log(firstArrayType[j]);
+}
+
+
+/** Day - 8  - Exercises on Typesript
+ *           - Learing Source https://www.w3schools.com/typescript/typescript_exercises.php
+ *           - Typescript assignments methods to declare data type
+ * 
+ */
+
+/**
+ *  Today I try to learn in a different manner. I found some exercises on Typescript
+ *  on w3schools.com which are based on few basic topics that I have covered on my
+ *  learning journey. 
+ */
+
+// Exercise was simply the best.
+//  What did I learn?
+/**
+ * 1. Typescript allows developers to add Types to Javascript
+ 
+ * 2. Javascript is loosely typed language whereas Typescript is not.
+
+ * 3. Typescript file is always needed to gets complied to Javascript Files and it can be configured on tsconfig.json (json-format) file.
+
+ * 4. There are two main ways that TypeScript assigns a type.
+        - Explicit and Implicit (explained below)
+
+  * 5. Infer in Ts and How does it work?
+
+ */
+
+ /* Eg of Explicit way to assign a Type
+ //  Explicit simply means writing out the type. Explicit types assignment method are
+    easier to understand, read and more interntional.
+    If someone is using this explicit method that means he/she exactly knows the data type
+    and intend to use particular datatype. 
+ **/
+ let firstName: string = "dilli";
+
+  /* Eg of Implicit way to assign a Type **/
+  let fullName = "Dilli Hang Rai";
+
+  /*  In this method Typescript simply guess the type, based on the assigned value
+      - that means Typescript guess the types of value which is called infer
+       - This implicit method will forces Typescript to infer the value
+       - Sometimes our Typescript donot properly infer the variable data type if such 
+       conditions arises then it will set the type to any which disables 
+       type checking.
+  **/
+
+  const json = JSON.parse("23");
+
+  // hover over the typeof json we get any as data type
+  console.log(typeof json);
+
+ // Forcing Typescript to disable the type checking with any keyword
+  let myAge: any;
+
+  // unknown in Ts means it is not known value data type ,it can be anything
+  let myAddress: unknown;
+
+  /**
+   * NOTE: I have only practiced some exercise based on topics I have covered in Typescript.
+   * More Exercises will be covered in upcoming Days.
+   */
+
+
+
+
+
+
+
