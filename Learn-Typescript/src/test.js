@@ -6,3 +6,6 @@ function display(value) {
 }
 display(123);
 display("this is string");
+
+
+

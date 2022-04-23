@@ -523,6 +523,197 @@ for(j = 0; j < firstArrayType.length; j++){
    */
 
 
+ /** Day - 9 - Revising and Practice
+  *          - Revised Intefaces, Unions, const, types
+  *          - coded with Examples
+  */
+
+  // Revision No: 1 const is really constant in typescript 
+  // once constant is declared it/similar named variable cannot be reused in whole program   
+  const hari = "this is constant hari";
+  const ram = "this is constant ram";
+  console.log(hari);
+  console.log(ram);
+
+  // hovering over hari we get Cannot assign to 'hari' because it is a constant.
+  hari = "this is supposed to be new hari";
+  ram = "we are trying to change the constant ram";
+  console.log(hari);
+
+  // let in Typescript works similar way in javascript but hovering
+  // over the variable we get any type let jackson:any
+  let jackson = "jackson is 3d object";
+  console.log(jackson);
+
+  jackson = "Jackson is now 4d object";
+  console.log(jackson);
+
+  // Revision No: 2
+  /* over the variable we get any type let jackson:any
+  // that means typescript understands if no any data type is provided
+  // it means any data type or Ts understand the type depending upon the
+  // value we have provided how do we know that just hover over the 
+  // console.log(jackson)
+  // we get to see let jackson:string
+  **/
+
+  // Revision No: 3 
+  /* Providing then one data type in Typescript which is called union
+     this is important when we need more than one data type like 
+     if I need string and number of arrays both we can use union
+     union allows us to declare and use more than one type
+     pipe(|) sign represents the union in Ts
+   * 
+   */
+
+  let myFirstArray: string[] | number[];
+  myFirstArray = ["number system", "octal", "BCD", "radix", "base of number system"];
+  myFirstArray = [0,4,8,16,24,32];
+
+  // Revision No: 4
+  /** Interfaces allows to work with entity 
+   * it checks & describes the entity and its data types 
+   * although it doesnot deals with implementation while classes and functions do
+   */
+
+  interface sports {
+      sportName: string,
+      sportNumber: number,
+      sportTime? : boolean
+  }
+
+  const sportOne: sports = {
+      sportName: "football",
+      sportNumber: 4
+  }
+
+  const sportTwo: sports = {
+      sportName: "BasketBall",
+      sportTime? : true
+  }
+
+  const sportThree: sports = {
+    sportName: volleyball,
+    sportTime? : boolean
+ }
+
+ /**
+  * Comparing above three examples 
+  * what we can find out is we have used
+  * interface in all three constant variables 
+  * 
+  * our first variable is not throwing any error because all
+  * entities and data types inside in it are working super fine
+  * 
+  * our second variable is throwing 
+  * 'sportNumber' is missing in type '{ sportName: string; sportTime: true; }' but required in type 'sports'
+  *  which means entity is missing here
+  * 
+  * our third variable is throwing two errors
+  * one is cannot find volleyball
+  * 'boolean' only refers to a type, but is being used as a value here
+  * these two errors shows we must declare entity with correct data type after using interfaces
+  * and types are not to be used as value 
+  */
+
+
+  /**
+   * Day - 10 - Alias in Typescript
+   *          - Differences between Alias and Interfaces 
+   *          - Uses of Alias/ best way to implement 
+   *          - Combination of type alias and unions
+   *          - Exceptional Error Reading & Handling
+  */
+
+  // Day - 10 - Alias in Typescript
+
+  // Type Alias
+  /**
+   - Alias allows us to create a custom type in typescript.It gives a type a new name.
+   - The processing  of creating the custom type which holds primitive and other data type is called 
+   - aliasing.
+   - In fact Typescript provides two ways to create custom types for our data and they are
+   - Type aliases and Intefaces
+   - Type alias is a just name for any type we intialize the type alias with type keyword 
+    --eg: type userName = string
+    - We can used to represent not only primitives but also object types, union types, tuples and intersections
+
+    - whenever we introduce type keyowrd the alias will declare the type it stands for
+    - same as variable it cannot be declared more than once time
+    - it cannot inferred by typescript that means with type introduced it must provide
+    - data type, unions eg: type pet = "dog" | "cats"
+   */
+
+    type petNumber = string | number;
+
+    interface petsInterface {
+        petNumber: petNumber,
+        petName: string,
+        petAge: number,
+    }
+
+    /** In the above we have used type inside the interface named petsInterface will hold either 
+     * string or number value similarly we can use type petNumber in variable too
+     */
+
+    let myPetNumber: petNumber;
+
+    //getting error here type myPetNumber is not assignable to boolean 
+    myPetNumber = false;
+
+    //error free as our type knows this is string which is assignable
+    myPetNumber = "string";
+
+    // type can be used as entity in interfaces which shows uniquness in interface
+
+
+    /** Uses of Alias 
+     * Alias is mainly used for re useable code purposes 
+     * it is best to use when we are not using common interfaces in our project
+     * But use this type as common entity in our project
+     * 
+     *  */ 
+
+    /* for eg:  **/
+
+    type popularSinger = string;
+    
+    // this is okay but using type entity could be clear and understandable
+    const popularSinger : string[] = ["adrian", "narayan gopal", "asha bhusal", "tara devi", "rajesh payal rai"];
+
+    // this will show type with string of arrays[]
+    const popularSingers : popularSinger[] = ["adrian", "narayan gopal", "asha bhusal", "tara devi", "rajesh payal rai"];
+
+    // Combination of type alias and union is best for larger project when we reached some point where we may get
+    // uncertain with our code for eg: 
+
+    type mayBePopularSinger = popularSinger | null;
+    // could be used as  type mayBePopularSinger = string | null;
+    // but we are combining the unions with type alias
+
+    let newPopularSingerCollection: mayBePopularSinger  = null;
+
+    // donot provide empty array it will throw errors --> Type 'undefined[]' is not assignable to type 'string'.
+    // instead supply strings of arrays declaring that mayBePopularSinger has string of array []
+    let newPopularSingers: mayBePopularSinger[]  = ["donot", "supply","empty", "arrays"];
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+  
+
+
 
 
 
