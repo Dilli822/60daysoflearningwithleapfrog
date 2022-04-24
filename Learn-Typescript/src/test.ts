@@ -49,4 +49,26 @@ console.log(helloWorld);
 
 
 
+// alias in typescript
+type ID = string | number;
+
+type NewID = null | string;
+
+interface demoInterface {
+    id: ID,
+    name: string,
+}
+
+// alias with variables
+let exampleVar: ID;
+exampleVar = "This is an example Var";
+
+let newexampleVar: ID[] = [454,4545,4545];
+
+
+
+
+
+
+
 

@@ -698,6 +698,107 @@ for(j = 0; j < firstArrayType.length; j++){
     let newPopularSingers: mayBePopularSinger[]  = ["donot", "supply","empty", "arrays"];
 
 
+    /** Day - 11 - Data types in Typescript
+     *           - Types of Data Type Typescript
+     *           - Void Data type
+     *           - Any Data type (Special Data type)
+     *           - Errors Reading and handling
+     */
+
+
+    /**
+     * 1. Data type
+          - whenever we declare we except to provide it some kind of value right not only value
+          but that particular value must have data types like it can be number,string, boolean, undefined, null
+          so similarly in Typescript we have data type . As Typescript is superset of javascript it supports all
+          the data types of Javascript.
+          It is very important to learn and understand the data type. As data type is also responsible how 
+          much memory it can hold/reserved after the variable is declared.
+          It also inform the type of data it is holding with value.
+     */
+
+     // for eg: we have syntax 
+     // [Keyword] [Variable Name]: [Data Type] = [Value];
+     const firstString: string = "string Data type";
+     const firstNumber: number = 45451211;
+     const firstBoolean: boolean = true;
+     const firstNull: null = null;
+     const firstUndefined: undefined = undefined;
+
+     
+
+    //  2. Kinds of Typescript Data Types
+    /***
+     *                Typescript Data Types
+     *                           |
+     *          ----------------------------------------
+     *          |                 |                    |
+     *      Primitive Types      any          User-Defined Types
+          - Number            (super set)        - enums
+          - String             + special         - classes
+          - Boolean            Data type         - interfaces
+          - Void                                 - arrays
+          - Null                                 - tuple            
+          - Undefined 
+    */
+
+
+    /* Void Data type in Typescript
+       - easiest and simplest data type in Typescript
+       - it returns zero or nothing or no output:undefined
+       - eg with function voidFunction
+       - hover over the console.log we get console.log(..data: []):void and on over voidFunction we get const voidFunction: ()=> void 
+       - this means typescript understands bydefault it is void data type if it is not returning anything
+       - but it is always best practice to include the void 
+    */
+
+    const voidFunction = () => {
+        console.log("this is void data type!");
+    }
+
+    const anotherVoidFunction = (): void => {
+        console.log("This is void function ");
+    }
+
+    // examples showing the void returns undefined or nothing value
+    let voidEg: void = undefined;
+    voidEg = "I want to assign new value";
+    // got error type 'string' is not assignable to 'void' type
+    // solution will be
+    voidEg = undefined;
+
+
+    // 3. Any Data Type
+     /** This is special data type which is superset of both User-defined and 
+      *  Using this data type disable the Typescript type-checking and compile time checking
+      *  this is dynamic and regarded as wrost data type (wrost based on its main feature)
+      */
+
+     // for eg: using any data type below shows that we can now do anything with our variable
+     // this clearly shows Typescript has been disabled and it is loosing it's essence here 
+     let arrow: any = "dilli";
+     arrow = 4545;
+     arrow = true;
+     arrow = undefined;
+     arrow = null;
+
+    //  what the heck is .arrow() method it should have thrown error in normal case by Ts
+    // but any data type means it could be any and Typescript does allow to do anything
+    // this can surely brings bugs in big projects.
+     console.log(arrow.arrow());
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
