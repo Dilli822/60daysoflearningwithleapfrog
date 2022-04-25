@@ -769,7 +769,7 @@ for(j = 0; j < firstArrayType.length; j++){
 
 
     // 3. Any Data Type
-     /** This is special data type which is superset of both User-defined and 
+     /** This is special data type which is superset of both User-defined and Primitive Data type
       *  Using this data type disable the Typescript type-checking and compile time checking
       *  this is dynamic and regarded as wrost data type (wrost based on its main feature)
       */
@@ -786,6 +786,116 @@ for(j = 0; j < firstArrayType.length; j++){
     // but any data type means it could be any and Typescript does allow to do anything
     // this can surely brings bugs in big projects.
      console.log(arrow.arrow());
+
+
+
+     /** Day - 12 - Continue Data Type in Typescript
+      *           - Never & Unkown Data Type
+      *           - Uses of never, any & unknown Data Type
+      *           - Errors Reading , Handling & Solving
+      */
+
+
+     /**
+      * Typescript any data type completely ignores the data type value assigned to the variable
+      *  - but the advantages of any data type is if we donot know how to fix the bug or we got 
+         - error only at a line no : 121 and then  at that  point we may be use any so that 
+         - all program or project runs 
+
+         ----- If you cannot fix error type any data 
+         ----- It is best practice to use only 4 or 5 any data type in project
+         ---- if you ever have to use any in project for more than dozen times
+         ---  think/maybe you are lacking some proper knowledges and solving the errors
+         ---  using any is like bottle with small/tiny holes
+      */
+
+     /* 1. Never Data Type 
+            - This Data type may not be as popular as other Data types
+            - it values(contain no value) that will be never and if we are using this means some values 
+               will never occur in our project
+
+            - used for throwing error or if we need to throw an expection or error
+            then we make a function that will throw error 
+
+            - use the never type to represent the return type of a function that always throws an error. For example:
+               function raiseError(message: string): never {
+                  throw new Error(message);
+                }
+    */
+
+    // Eg of function throwing always never
+    const neverFunctionExample = (): never => {
+        throw "never";
+    }
+
+
+    // 2. Unknown Data Type
+    /**
+     *  - Introduced in Typescript version 3
+        - Unknown Data type is somehow similar to any but we can only assign any and unknown(that means value)
+          whose data type is not known to the unknown type so we can it is type-safety not like any which can bring
+          bugs in our code so if we have to use unknown data type after it's declaration it must be precisely 
+          defined with value and data type otherwise we cannot use it or access any properties.
+    */
+
+    // Example :
+    let vAny: any = 708;
+    let vUnknown: unknown = 822;
+
+    let randomV: string = vAny;
+    let randomUnknownV: string = vUnknown;
+
+    // From above example we now clearly knew that
+    // unknown data type cannot be assigned untill it's data type is known
+    // so we get error ----> Type 'unknown' is not assignable to type 'string'.
+    // but any can be used with no any error so Unknown data type is awesome and safe then any
+
+
+    // this shows that unknown data type means we donot know yet what data type will be used in such cases
+    /* but as we keep on working with project we will surely know exactly what data type will come 
+       so in such cases we bring our unknown data type and assign the data type and use it.
+    */
+
+    /* For eg: How we assign the data type to unknown? 
+              -> simply using as keyword we can assign required data type to unknown and use it in variable
+    */
+
+
+    let presentUnknownFutureKnown: unknown = 23;
+
+    let nowWeKnowDataType: string = presentUnknownFutureKnown as string;
+    //        ----> unknown  to  string data type
+
+    // similarly can be used with any
+    let pageNumberAny: any = "1";
+    let pageNumberAnyT: number = pageNumberAny as number;
+
+
+    let myWord: string = "one";
+    let myNumbericWord: number = myWord as number;
+    /* now we getting error as error --> Conversion of type 'string' to type 'number' may be a mistake because neither 
+    type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.ts(2352)
+    */
+
+    /**
+     *     This means first converts string to unknown and unknown to number
+     * -- this process/functionality is called type assertion in typescript
+     *     ------------ string -----> unknown ---> number 
+     */
+
+    let mySolveNumbericWord: number = (myWord as unknown) as number;
+
+    // Notes:-Best Practice to use void and unknown as well as never(which is not popular) & to avoid any data type.
+    
+
+
+    
+
+
+
+
+
+
 
 
 
