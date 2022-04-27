@@ -886,6 +886,219 @@ for(j = 0; j < firstArrayType.length; j++){
     let mySolveNumbericWord: number = (myWord as unknown) as number;
 
     // Notes:-Best Practice to use void and unknown as well as never(which is not popular) & to avoid any data type.
+
+
+    
+     /** Day - 13 - Working with DOM in Typescript
+      *           - Accessing the Elements Properties
+      *           - Making Typescript Understands HtmlElement Types 
+      *           - Adding Listener to Typescript
+      *           - Errors Reading , Handling & Solving
+      */
+
+     // Working with DOM in Typescript
+     const oneElement = document.querySelector(".select");
+
+    //  Typescript has lots of types for DOM out of the box
+    /**
+      const oneElement = document.querySelector(".select");
+      // here const oneElement is variable with .select as className
+
+      Hovering over the oneElement we get oneElement: Element 
+      this means it is Element or oneElement understands that it is element Data Type
+     */
+
+    /**
+      As our Typescript Only understands the data type it has no idea 
+      on markup , it doesnot parse it and doesnot see at all
+      it only really cares/sees only about data types in typescript
+    
+    */
+
+    const twoElement = document.querySelector(".select2");
+    console.log('This is Two Element', twoElement.id);
+    console.log('Typescript now understands the methods', twoElement.innerHTML);
+
+
+    // Elements is the highest class in hiearchy
+
+
+    // what if I want to do something with .select2 like I want to get the
+    // value from it? 
+    /**
+     * Then we can simply do .value or .val like in jquery or js
+     * right but it brings problems in Js
+     * -- error- --> Property 'value' does not exist on type 'Element'.
+     */
+
+    console.log('oneElement', oneElement.value);
+
+    // we can solve this by just passing the any data type
+    console.log('oneElement', (oneElement as any).value);
+    // BUT NEVER FOLLOW OR DO THIS CHANGE IT TO ANY THIS WILL BRING
+    // CRACK IN CODE RATHER DO THIS BELOW
+
+    const notGenericElement = document.querySelector(".select") as HTMLInputElement;
+    const getHTMLElement = document.querySelector(".gettingValue") as HTMLImageElement;
+
+
+    // This shows completely no error as HtmlInputElement does have .value method
+    // that returns some value of HTMLelement
+    console.log("Some are HtmlInput some are not we can access to properties with these methods ", notGenericElement.value);
+
+    // Adding Listener to the Typescript
+
+    const addListenerElement = document.querySelector(".listen");
+
+    // Typescript supports the .addEventListener method which holds the two parameters
+    // One parameter is event (in our case it is fade which is event name) -- fade means we try to fade it
+    // then it has event function which is taking event param and logging the event and param event
+
+    addListenerElement.addEventListener('fade', (event) =>{
+        console.log('This is function event', event);
+    });
+
+    /** Hover over (event) we get 
+     * event is actually Event which is generic , they are same generic 
+     * both addListenerElement and event
+     * this shows that event is also the highest class in hiearchy
+    **/
+
+    // How to read the event value now??
+    // getting error when we want to get value from event .
+    // error --> Property 'value' does not exist on type 'EventTarget'.
+
+    addListenerElement.addEventListener('fade', (event) =>{
+        const target = event.target as HTMLInputElement
+        console.log('This is function event', target.value);
+    });
+
+    /**
+     * as event is generic so we have to tell the typescript that event.target
+     * is not generic but htmlelement that has value by declaring the target as variable
+     * now we can remove the event and add target.value directly as we know htmlinputelement holds value 
+    // Typescript Doesnot Have any access to our MARKUP
+    /** 1. First Define the correct type of DOM Element
+     *  2. Then Typescript will decide either that element has any method
+     *  Element and Event is one of the highest class in  hiearchy.
+     *  This may be the way to workout with DOM elements in Typescript.
+    *  */
+
+
+    /** Day 14 - Classes in Typescript (OOP-Concepts)
+     *         - Basics of Classes, Fields, Methods 
+     *         - Class Constructor and Class Instance Objects
+     *         - Examples of Class in Typescript
+     */
+
+    /* 
+    
+    Classes in Typescript
+       -> classes are the fundamental entities which are used to create reusable components.
+       - Just like in OOP (object-oriented Progamming Language) like Java,C++ 
+       - Typescript fully supports the Classes along with some added features,syntax & antonations
+       - It is like a blueprint for creating objects in terms of OOP concepts 
+       - and our Typescript is like OOP which suports classes, interfaces,
+       - data binding. ES6 version of Js supports the classes and Good news is Typescript is based on 
+       - ES6 and latest version.
+       
+       
+    Classes Includes:
+       - Fields  -- it is any variable declared in a class
+       - constructors - allocating memory gor the objects of the class
+       - methods or functions - represent the execution or actions taken by objects
+
+    Basic Syntax of Class is
+      class ClassName { 
+
+      }
+    */
+
+    // this is an example of class in typescript with normal properties type
+    class Books {
+        name: string;
+        pageNumber: string | number;
+    }
+
+    // accessing the  properties of Classes
+    const books = new Books();
+    books.name = "The art of war";
+
+    /* constructor in Ts classes
+    class Books {
+            constructor(bookName: string){
+            this.bookName = bookName
+        }
+    }
+    Constructor is special function of the class that is responsible for intializing the variables/properties of Class
+    - Ts has constructor keyword, it is a function and can be parameterized
+    - here this keyowrd refers to current instance of the class object 
+    - let's look with an example below the code we see bookName twicely once 
+    - inside the parentheses of constructor function another as variables of class newBooks
+
+    ### this ---> this keyword always avoid ambiguity, the class’s field is prefixed with the this keyword.
+    */
+    class newBooks {
+        bookName: string;
+        pageNumber: string | number;
+
+        constructor(bookName: string){
+            this.bookName = bookName
+        }
+
+        bookFunction() {
+            console.log("This is function from inside the Class named newBooks !");
+        }
+    }
+
+    // Creating Instance objects
+    /**
+      - With the help of new keyword we can create an instance class like constructor has created for us up there.
+      - new keyword is responsible for instantiation. 
+      - Basic syntax is --
+        var object_name = new class_name([ arguments name ])
+     */
+
+    var egNew = new newBooks("Hello from instance objects");
+    // Accessing Attributes 
+    egNew.bookName;
+
+    //accessing function's properties 
+    egNew.bookFunction();
+
+    // Examples of Class in Typescript
+
+    class Guitar {
+        guitarName: string;
+        guitarRate: string | number;
+
+        constructor(guitarName: string, guitarRate: number | string){
+            this.guitarName = guitarName;
+            this.guitarRate = guitarRate;
+        }
+
+        getGuitar(): string {
+            return this.guitarName + " " + this.guitarRate;
+        }
+    }
+
+    const fullGuitar = new Guitar("gibson les paul", 1960);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
