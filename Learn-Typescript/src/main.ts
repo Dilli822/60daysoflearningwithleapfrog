@@ -1086,6 +1086,93 @@ for(j = 0; j < firstArrayType.length; j++){
 
 
 
+    /** Day 15 - Brief on Encapsulation(OOP-Concepts) 
+     *         - Access Modifiers in Typescript 
+     *         - Brief on Readonly in Typescript
+     *         - Erros Reading & Handling
+     */
+
+    /* 1. Encapsulation Concept:
+                  - It is one of the fundamental concept in object-oriented programming
+                  - It is also often used to hide the the internal representation, state, or let's say working mechanism of any code/object 
+                    from the outside which is also called information hiding.
+                  - It also means a process where attribute is not visible from the outside of an object and we bundle it with 
+                    methods that provide read or write access, such access facilities of writing and reading specific information is allowed
+                    by encapsulation.
+
+      2. Data Modifiers in Typescript
+                  - From above definition of encapsulation of we might know that in OOP, the concept of
+                    'Encapsulation' is used for making class (class that we have created in previous Day)
+                    members public or private which means class can control the visibility of its data and 
+                    members that are present inside it.
+
+                Q. But how to control or take access of it?
+                   - With the help of Access Modifiers we can do it.
+
+                                    Access Modifiers
+                                           |
+            -------------------------------------------------------------------
+            |                              |                                  |
+          Public                        Private                         Protected
+                   
+    3. Note: By default Typescript treats properties and methods as public by default if no any modifier is applied to them.
+
+    // Example below shows that class Buses methods and properties can be accessed by creating instance class object 
+       it means busName and busCode are default till now by default . so keeping public busName or just busName is same.
+    **/
+
+    // 4. Public Modifiers: - All the public members can be accessed anywhere without any restrictions. 
+    class Buses {
+        // public busName: string;
+        busName: string;
+        busCode: string | number;
+    }
+
+    let Bus = new Buses();
+    Bus.busName = "Sajha Yatayat";
+
+    // 5. Private Modifiers
+    class Os{
+        private apple: string;
+        osNumber: string | number;
+        protected kernel: string;
+
+        // protected and private can only be accessed inside the particular class.
+        getOperatingSystem(): string {
+            return `${this.apple} ${this.kernel}`;
+        }
+
+    }
+
+    let OS = new Os();
+    OS.apple = "ios operating system"; // we cannot directly accessed the private memebers
+    // getting error --> Property 'apple' is private and only accessible within class 'Os'.
+    OS.osNumber = 1999; // this is good can be complied
+
+
+    /* 5. Readonly
+            - Readonly is the one of keyword in Ts which allow us to only read the property of class, type or interface.
+            - It cannot be modified but can be accessed from inside & outside too.
+            - It all depends on their initializing/declaration part inside the class Constructor
+
+            Example of syntax(may not be 100% accurate):
+                  class className {
+                      readonly propertyName: datatype;
+                  }
+                  let newClassName  = new className;
+                  newClassName.propertyName = value;
+     * 
+     */
+
+
+
+
+
+
+
+
+                       
+
 
 
 
