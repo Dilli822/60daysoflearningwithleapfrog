@@ -1109,7 +1109,8 @@ for(j = 0; j < firstArrayType.length; j++){
                 Q. But how to control or take access of it?
                    - With the help of Access Modifiers we can do it.
 
-                                    Access Modifiers
+               
+                                     Access Modifiers
                                            |
             -------------------------------------------------------------------
             |                              |                                  |
@@ -1160,9 +1161,219 @@ for(j = 0; j < firstArrayType.length; j++){
                       readonly propertyName: datatype;
                   }
                   let newClassName  = new className;
-                  newClassName.propertyName = value;
+                  newClassName.propertyName;
+     * 
+    */
+
+
+
+   /*** Day -16  -...continue Readonly , Readonly vs const
+    *            - Interface + Class with access modifiers
+    *            - Typescript - Static
+    *            - Erros Reading & Handling
+    */
+
+
+
+   /**
+    *  # Readonly vs const
+              - const is variable but Readonly is access modifiers
+              - we can make class immutable with Readonly but const cannot
+              - initialization of const is in the declaration but for Readonly both in the declaration or in the constrcutor of same class
+
+    *   Example of initializing the readonly in constructor of the same class:
+              class Bikes {
+                   readonly bikeName: string;
+
+                   constructor(bikeName: string){
+                       this.bikeName = "Royal Enfield";
+                   }
+              }
+    * 
+    */
+
+    class collectionHistory {
+        readonly historyBook: Date;
+        modernBook: string;
+
+        constructor(historyBook: Date){
+            this.historyBook = historyBook;
+        }
+    }
+    
+    let oldBook = new collectionHistory(new Date(1972,05,4));
+
+    // getting error --> Cannot assign to 'historyBook' because it is a read-only property.
+    // as we have set the historyBook as readonly and is already declared as new Date(1972,05,04)
+    oldBook.historyBook = new Date(1956,05,12); //getting compile error
+
+    oldBook.modernBook = "Age of Empire";
+    oldBook.modernBook = "Game of Thrones";
+
+
+    /**
+     * Props in a type (props --> means properties ) - readonly is also used in props 
+     */
+
+    type PI = {
+        readonly PIValue: string | number;
+        dynamic: string | number;
+    }
+
+    const newPI: PI = { PIValue: 3.14 };
+    console.log(newPI.PIValue);
+
+    // error --> Cannot assign to 'PIValue' because it is a read-only property.
+    newPI.PIValue = "three point One Four";
+    newPI.dynamic = "This is dynami vale";
+
+    // If we want to make some property inside the class constant we can use readonly which is super handy
+
+    class regularUser {
+        firstName: string;
+        lastName: string;
+        readonly unchangeableName: string;
+
+        constructor(firstName: string, lastName: string){
+            // this firstName and outside firstName is different
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.unchangeableName = firstName;
+        }
+
+        // trying the assign the value to unchangeableName
+        changeUnchangeableName(): void {
+
+            // error on compiling 
+            this.unchangeableName = "Trying to change the unchangeable Name!"
+        }
+
+        getFullUserName(): string {
+            return this.firstName + " " + this.lastName;
+        }
+    }
+
+    const dailyUser = new regularUser("Dilli", "Hang Rai");
+    console.log(dailyUser.firstName);
+
+
+    /** # adding interfaces to the class 
+     *  - if we want to add compulsory interface to the class then we add it 
+     *  - by inserting interface directly to the class with implements keywords
+        - class className interfaceName {
+                   
+                 }
+
+        - implement keyword -- TypeScript will check and ensure that the object 
+        actually implements all the properties and methods defined inside the interface.
      * 
      */
+    interface addInterface {
+        addingInteface(): string;
+    }
+
+    /** getting error -->Class 'mixinginterfaceExample' incorrectly implements interface 'addInterface'.
+        Property 'addingInteface' is missing in type 'mixinginterfaceExample' but required in type 'addInterface'.ts(2420)
+        main.ts(1272, 9): 'addingInteface' is declared here. */
+    class mixinginterfaceExample implements addInterface {
+
+    }
+
+    // REMOVING ERROR SIMPLY BY INSERTING THE  addingInteface() method
+
+    class validMixingInterfaceExample implements addInterface {
+        addingInteface(): string{
+            return "HELLO WORLD";
+        }
+    }
+
+
+    /* ## Typescript - Static
+            - Static is introduced in ES6 so does in Typescript. As name suggets static it has static functionality 
+
+            -##very useful source: https://codingbeam.com/static-methods-properties-typescript-tutorial/ 
+
+            - They are accessible by ClassName.[propertyName] or Class.[methodName].
+
+            - Example:Math.floor() is a static method available in Math Class which don’t need any instance 
+              for using it, and another example is Math.PI which has static value of 3.14.
+
+            - The static methods and properties are available in a class which have the static functionality 
+              and they are available without any instance object.
+     * 
+    */
+
+    class exampleStatic {
+        static gValue: number | string = 9.8;
+        radius: number;
+    }
+
+    // look no error
+    exampleStatic.gValue;
+
+    // look error without instance objects
+    exampleStatic.radius;
+
+    // can be solved by creating instance object with new keyword
+    let anotherStatic = new exampleStatic();
+    anotherStatic.radius = 8548448;
+
+    // This shows that static members are really static in class .let's another big example:
+    /**
+     * Example includes class with interface , readonly, protected, public, private and static members/methods
+     */
+
+    interface checkMe {
+        getFull(): string;
+    }
+
+    class BigBoy implements checkMe {
+
+        boyName: string;
+        boyAge: string | number;
+        private boyId: number = 822;
+        public boyGender: string;
+        protected boyCash: number | string = "Rs. 12000";
+
+        static readonly boyEyeColor: string = "red";
+
+        constructor(boyName: string, boyAge: number | string){
+            this.boyName = boyName;
+            this.boyAge = boyAge;
+        }
+
+        getFull():string {
+            // return " getFull functio returns string";
+            return this.boyName + " " + this.boyAge;
+        }
+        
+        getBoy(): string {
+            return this.boyCash + " " + this.boyId;
+        }
+    }
+
+    let boy = new BigBoy("Dilli", "Hang");
+    boy.boyGender = "male";
+    boy.boyAge = 23;
+    // try to get the protected and private data 
+    BigBoy.boyEyeColor;
+
+    boy.getBoy();
+    boy.getFull();
+
+
+
+
+
+
+
+
+
+    
+
+    
+   
+
 
 
 
