@@ -1272,6 +1272,12 @@ for(j = 0; j < firstArrayType.length; j++){
         addingInteface(): string;
     }
 
+
+    /* Day - 17   - Continue learning the intercept + static + class with access modifiers....
+                  - inheritance in Typescript 
+                  - Generics in Typescript...
+
+
     /** getting error -->Class 'mixinginterfaceExample' incorrectly implements interface 'addInterface'.
         Property 'addingInteface' is missing in type 'mixinginterfaceExample' but required in type 'addInterface'.ts(2420)
         main.ts(1272, 9): 'addingInteface' is declared here. */
@@ -1357,9 +1363,57 @@ for(j = 0; j < firstArrayType.length; j++){
     boy.boyAge = 23;
     // try to get the protected and private data 
     BigBoy.boyEyeColor;
-
     boy.getBoy();
     boy.getFull();
+
+    class Admin extends BigBoy {
+        private editor: string 
+
+
+        setEditor(editor: string): void {
+            this.editor = editor
+        }
+
+        getEditor(): string {
+            return this.editor
+        }
+    }
+
+    /**
+     * A class can reuse the properties and methods of another class. 
+     * This is called inheritance in TypeScript. The class which inherits properties and methods is called the child class.
+     * And the class whose properties and methods are inherited is known as the parent class. 
+     * These names come from the nature that children inherit genes from parents.
+    */
+
+    /** Inheritance explanation in own words
+     *  Inheritance is a major pillar of objected-orineted progamming.
+     *  There are different kinds of inheritance in OOP but for now we are only using single heritance
+     *  let me explain in plain langauage for exmaple if we check our DNA and compare to the parent's DNA we find the proof 
+     *  or our information is surely being inherited similarly inheritance in OOP is also works in a same way.
+     *  
+     * 
+     */
+
+    /***
+     * 
+     * Single Inheritance in TypeScript: In single inheritance, the properties and behaviour of the base class
+     *  can be inherited into at most one derived class. It used to add new functionality to the already implemented class.
+     * Example: In this example, we are creating a Person as a base class and using single inheritance 
+     * implementing Teacher as a Derived class.
+     */
+
+    /** 
+     * class baseClassName {
+           }
+
+       class derivedClassName extends baseClassName {
+       }
+    */
+
+
+
+
 
 
 
