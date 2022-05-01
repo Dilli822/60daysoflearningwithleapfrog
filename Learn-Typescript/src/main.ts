@@ -1333,8 +1333,14 @@ for(j = 0; j < firstArrayType.length; j++){
         getFull(): string;
     }
 
-    class BigBoy implements checkMe {
 
+    /** Day - 18  - ...continue concept of inheritance in Typescript 
+     *            - Generics in Typescript
+     *            - Generate Unique id using generics too
+     *            - Using Generics with Interface
+    */
+
+    class BigBoy implements checkMe {
         boyName: string;
         boyAge: string | number;
         private boyId: number = 822;
@@ -1369,7 +1375,6 @@ for(j = 0; j < firstArrayType.length; j++){
     class Admin extends BigBoy {
         private editor: string 
 
-
         setEditor(editor: string): void {
             this.editor = editor
         }
@@ -1391,25 +1396,62 @@ for(j = 0; j < firstArrayType.length; j++){
      *  There are different kinds of inheritance in OOP but for now we are only using single heritance
      *  let me explain in plain langauage for exmaple if we check our DNA and compare to the parent's DNA we find the proof 
      *  or our information is surely being inherited similarly inheritance in OOP is also works in a same way.
-     *  
-     * 
      */
 
-    /***
-     * 
+    /*
      * Single Inheritance in TypeScript: In single inheritance, the properties and behaviour of the base class
      *  can be inherited into at most one derived class. It used to add new functionality to the already implemented class.
      * Example: In this example, we are creating a Person as a base class and using single inheritance 
      * implementing Teacher as a Derived class.
-     */
-
-    /** 
      * class baseClassName {
            }
-
        class derivedClassName extends baseClassName {
        }
     */
+
+    /**
+     * Typescript - Generics
+     *     - It is very important and we always need a reuseable components that makes the program flexible as
+     *         well as scalable in the long-term.
+     *     - Generics in Typescript helps us to create reusable component and make components work with any
+     *       data type and not restrict to only one data type. 
+     *     - Generics in Typescript is similar to C# generics and can be called or used with a variety of data type.
+     *     - Generics uses the type variable , a special kind of variable that denotes types.
+     *       The type variable remembers the type that the user provides and works with that particular type only.
+     *    - In generic we pass a parameter called type parameter which is put in between the lesser and greater sign
+     *      < > for eg: < type_parameter_name>.
+     */
+
+    // Example of function without using generic
+    function sum(items: any): any []{
+        return new Array().concat(items);
+    }
+
+    const numArray = sum([1,2,3,4,5]);
+    const stringArray = sum(['this is ', 'a ', 'string']);
+
+    console.log(numArray);
+    console.log(stringArray);
+
+    //Example of function with using generics
+    function getMe<T>(items: T[] ): T[] {
+        return new Array<T>().concat(items);
+    }
+
+    let myNumArray = getMe<number>([451,45,856]);
+    let myStrArray = getMe<string>(["Hello", "World"]);
+
+    myNumArray.push(400);
+    myStrArray.push("Pushing only string");
+
+    // we are getting compile error because we have generic type T for myNumArray as type number number of array
+    myNumArray.push("Hi this is array"); // Compile Error 
+    // Generic Type <T> as string of array
+    myStrArray.push(5000); // compile Error
+
+
+
+
 
 
 
