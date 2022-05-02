@@ -1415,6 +1415,15 @@ for(j = 0; j < firstArrayType.length; j++){
      *         well as scalable in the long-term.
      *     - Generics in Typescript helps us to create reusable component and make components work with any
      *       data type and not restrict to only one data type. 
+     * 
+     * 
+     * 
+     * 
+     
+    // Day - 19     - Continue with Generics in Typescript
+                    - Understandig the Generics with Function
+                    - Errors Reading & Handling
+
      *     - Generics in Typescript is similar to C# generics and can be called or used with a variety of data type.
      *     - Generics uses the type variable , a special kind of variable that denotes types.
      *       The type variable remembers the type that the user provides and works with that particular type only.
@@ -1448,6 +1457,75 @@ for(j = 0; j < firstArrayType.length; j++){
     myNumArray.push("Hi this is array"); // Compile Error 
     // Generic Type <T> as string of array
     myStrArray.push(5000); // compile Error
+
+
+    // Generate Unique Id with Generics
+    // (obj) is throwing the warning called--> Parameter 'obj' implicitly has an 'any' type, but a better type may be inferred from usage.
+    // this is because we have not provided any data type to the obje which is meant to be parameter of function addId
+    // --> we use generics here <T> as Big T 
+    const addId = <T>(obj: T) => {
+        const id = Math.random().toString();
+        return {
+            ...obj,
+            id,
+        }
+    }
+
+    const userUniqueId = {
+        name: "dilli",
+    }
+
+    const userResult = addId(userUniqueId);
+    console.log("User Dilli has unique id --->", userResult);
+
+    /**
+     *  let's understand what is happening behind the scene
+     *  we have Math.random() which generates unique numbers everytime
+     * Math.random()
+        0.6491192220278712
+        Math.random()
+        0.9413353472597261
+        Math.random()
+        0.3192014728573176
+
+        .toString() method will make the number into string
+        Math.random().toString()
+        '0.0886374026599892'
+
+        -- setting the js to print only first 16 digits
+           Math.random().toString(16)
+          '0.3e12dee113c9b'
+
+        #Spread Operator (...) will copy the object.
+    **/
+
+    /*  const addId = <T>(obj: T) => {
+        const id = Math.random().toString();
+        return {
+            ...obj,
+            id,
+        } }
+
+    const userUniqueId = {
+        name: "dilli",
+    }
+
+    const userResult = addId(userUniqueId);
+    console.log("User Dilli has unique id --->", userResult);
+    Hover over the addId then we get below code - which shows that generics has now understood the object type
+
+    const addId: <{
+        name: string;}>
+    (obj: {
+        name: string;}) => {
+        name: string;
+    } & {
+      id: string;
+    }
+    */
+
+
+
 
 
 
