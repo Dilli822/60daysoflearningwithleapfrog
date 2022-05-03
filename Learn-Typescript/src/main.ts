@@ -1526,6 +1526,155 @@ for(j = 0; j < firstArrayType.length; j++){
 
 
 
+    /* Day - 20    - Interfaces + Generics in Typescript
+    *              - Setting Default  Generic Type
+    *              - Reusable Generic Interface
+    *              - Error Reading & Handling
+    */
+
+
+    /*  # Typescript Generics Interfaces
+            - Like we use generics in Classes we can use generics with interfaces A generic typescript has generic type paramete list in an angle
+            brackets <> 
+
+            - syntax will be
+            interface interfaceName <T> {
+             // ...
+            }
+            - Now T type parameter will make all members visible to the Interface
+    */
+
+    interface exampleInterface<T> {
+
+    }
+
+    /* Typescript Generic Interface with type paramter can have one or multiple types 
+      for eg: 
+        interface namingInterface <A,B> {
+           id: A;
+           trade: B;
+        }
+      -  it consists of two/multiple parameters members key and value with corresponding types A and B
+      - Type A and B can hold any data type and value inside the namingInterface members
+
+    **/
+
+    interface naming <A, B> {
+        id: A;
+        trade: B;
+    }
+
+    let ownName: naming <number,string> = {
+        id : 708,
+        trade: "Trademark"
+    }
+
+    // Holding A as number and B as string here similarly can be used with other local variables
+    let otherName: naming <boolean, null> = {
+        id: true,
+        trade: null
+    }
+
+    const createId = <T> (obj: T) => {
+        const myId = Math.random().toString(16);
+        return {
+            ...obj,
+            myId
+        };
+    };
+
+    // creating interface to use/pass in Generics Type <T> 
+    interface creatingInterface {
+        userName: string;
+    }
+
+    // creating a constant user which will have unique 16 characters string
+    const otherUser: creatingInterface = {
+        userName: "Dilli Hang Rai",
+    }
+
+    // Here calling a createId function which will have interface as Generics with parameter otherUser
+    // This is also an example of explicit declarations which help to read code more easily
+    /* Hover over createId to show -- > 
+           const createId: <creatingInterface>(obj: creatingInterface) => creatingInterface & {
+                      myId: string;
+            }
+    * */
+    const finalOutput = createId <creatingInterface> (otherUser);
+    console.log("FinalOutput is  ", finalOutput);
+
+    // PROBLEM HERE IS CODE CAN BE BROKEN WITH ANOTHER TYPE 
+    /* Now our function works as obj -->  const createId: <string>(obj: string) => string & { myId: string; } */
+    const finalResult = createId <string> ("This is string ");
+    console.log("FinalResult is --> ", finalResult);
+
+    // This code can be used more secure by setting the default Generic type as <T extends object> with our function at previous stage
+
+    const sumId = <T extends object> (obj: T) => {
+        const uId = Math.random().toString(16);
+        return {
+            ...obj,
+            uId,
+        };
+    };
+
+    interface sumInterface<k> {
+        name: string;
+        data: k;
+    }
+
+    const namingUser: sumInterface <number> = {
+        name: "Dilli",
+        data: 451.10,
+    }
+
+    //getting error as -Type 'string' does not satisfy the constraint 'object'.
+    const finalUser = sumId<string>("adding string"); 
+    console.log("finalUser is --> ", finalUser);
+
+    // This will satisfy our condition that satisy the setting default Generic Type as <T>
+    const finalUsers = sumId<sumInterface>(namingUser);
+    console.log("FinalUsers --->", finalUsers);
+
+
+    //## Reusable Generics with Interface
+
+    /** Examples of creating flexible and reuseable generic interface
+     * - Here <U> is set as default genetic type
+     * - These examples shows clear idea that helps us to avoid creating many interfaces repeatedly
+     */
+    
+    interface commmonInterface<U> {
+        superName: string;
+        address: U;
+    }
+
+    const customUser: commmonInterface< { object: string } > = {
+        superName: "Dilli",
+
+        // this is like json object
+        address: {
+            object: "Itahari",
+        },
+    };
+
+    let dynamicUser: commmonInterface <string [] > = {
+        superName: "dilli",
+        address: ["Itahari", "Sunsari", "Nepal"],
+    }
+
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 
 
