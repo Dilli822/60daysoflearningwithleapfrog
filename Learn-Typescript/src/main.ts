@@ -1663,7 +1663,112 @@ for(j = 0; j < firstArrayType.length; j++){
         address: ["Itahari", "Sunsari", "Nepal"],
     }
 
+
+    /* Day - 21  - Enums in Typescript
+                 - Types of Enums in Typescript
+                 - Intialization of Enums    
+    */
+
+   /**
+    * Enums/Enumeration in typescript
+    * - It is a special 'class'that represents a group of constants(unchangeable variables).
+    * - It is new data type in Typescript as introduced in other langauges such as Java or C++
+    * - It allows to create a set of named constant 
+    * - this is like collection of related values that can be string or nunmber values
+   */
+
+    // Types of Enums in Typescript
+    /**
+                        Enums
+                          |
+    ----------------------------------------------------
+    |                     |                           |
+    Numeric enum        String enum              Heterogeneous enum
+
+    // Basic Syntax of Enum
+          enum enum_name {
+              // values....     
+            }
+    */
+   
+    // Basic Syntax Example: 
+    enum exampleEnum {
+
+    }
+
+    /**
+     *  Initializing of Numberic Enums
+     *     # Default - Numeric Enums
+             - By default, enums will initialize the first value to 0 and add 1 to each additional value:
+           
+           # Mannual Initializing
+            - But we can intialize it by giving the value of the first numeric enum and have it auto increment from that
+    */
+
+    // Default Enums
+    enum defaultEnum {
+        up,
+        down,
+        right,
+        left
+    }
+
+    let currentEnum = defaultEnum.up;
+    console.log(currentEnum); // check logs should be 0 
     
+    // Setting Mannual Enums
+    enum mannualEnum {
+        up = 1,
+        right = 4,
+        left = 10,
+        down =5,
+    }
+
+    console.log(mannualEnum.up);
+    console.log(mannualEnum.down); // logs must be 4
+    // It is not necessary to assign sequential values to Enum members they can have any value
+
+    // Fully Initializtion of Numeric Enums
+    enum statusCode {
+        errorCode = 404,
+        internalError = 500,
+        myId = 822,
+        success = 200,
+    }
+
+    console.log(statusCode.errorCode); // logs must be 404
+    console.log(statusCode.success); //logs must be 200
+
+
+    /** String Enums
+     *     - Enums can also contain strings
+     *     - This Enum type is also popular because of it's readability and debug helper
+     *     - There values are intialized with string values rather than numeric values
+     *     - unlike numeric enum string enums are not auto-incremented
+     * 
+     *  let's understand with examples
+     */
+    enum stringEnum {
+        up = "upward",
+        down = "downward",
+        right = "rightSide",
+        left = "leftSide"
+    }
+
+    console.log(stringEnum);
+    // output will be { up: 'upward', down: 'downward', right: 'rightSide', left: 'leftSide' }
+    console.log(stringEnum.left);
+    stringEnum['rightSide']; //return rightSide
+
+    // Heterogeneous Enum - As name suggets they are enums type that contain both string and numeric values
+    enum heteroEnum {
+        status = "active",
+        statusCode = 100,
+        pending
+    }
+
+    heteroEnum.status;
+
     
 
 
