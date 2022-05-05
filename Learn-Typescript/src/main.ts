@@ -1769,6 +1769,86 @@ for(j = 0; j < firstArrayType.length; j++){
 
     heteroEnum.status;
 
+
+    /* Day - 22  - Brief on object
+    *            - object vs Objects in Typescript
+    *            - Typescript Objects
+    *            - Types of Typescript Objects
+    */
+
+
+    /* # Brief on object:
+              - object is alos known as real world entity
+              - it can include properties, methods and more importantlty state and behavior
+              - State of the object is represented by data members or fields
+              - Behaviour is represented by methods.
+       
+
+      # object in Typescript
+        - It is an instance which contains set of key value pairs covered by curly braces{}
+          { name: "dilli" }
+             |        |
+            key     value
+        - assigned values can be scalar, functions or array
+    **/
+
+        var objectCollection = {
+           key1: "this is value or scalar value",
+           key2: function (){
+                   console.log("Key returning the function ")
+           },
+           //collection
+           key3: ["array element1", "array element2", "array element3"],
+       };
+
+       let userObj = {
+           name: "dilli",
+           id: 822,
+           age: 23,
+       }
+
+       userObj.name;
+       userObj.id;
+
+    /**
+     *   # object vs Objects
+     *     - one is small/lowercase 'o' object and another is uppercase 'o' Objects
+     *     - object = represents all non-primitive values 
+     *     - Object = type describes the functionality of the objects(like method)
+     *  for eg: the Object type has the methods toString(),valueOf methods that can
+     *            be accessible by any object.   
+     * 
+     * 
+     *    let eg: {} = {};
+     *    console.log(eg.toString());
+     *             
+     *   // output will be
+     *     [object Object]
+     *       eg     toString
+     */
+
+    let exampleObjects: {} = {};
+    console.log(exampleObjects.toString());
+
+    let anotherexample: { key1: number } = { key1: 450};
+    console.log(anotherexample.toString());
+
+
+    /** ## Typescript object -
+     *  - It reprsents all values that are primitive types.
+     
+     * # Primitive types in Ts.
+     *  - The primitive types in TypeScript are the
+     *  Number, Boolean, String, Void, Null, Undefined types, and Enum types.
+     * 
+     */
+
+
+
+
+
+    
+
     
 
 
