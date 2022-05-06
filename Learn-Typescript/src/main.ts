@@ -1840,8 +1840,148 @@ for(j = 0; j < firstArrayType.length; j++){
      * # Primitive types in Ts.
      *  - The primitive types in TypeScript are the
      *  Number, Boolean, String, Void, Null, Undefined types, and Enum types.
+     *
+    */
+
+
+    /** Day - 23   - Brief on Index Signature in Typescript
+     *             - Utility Types in Typescript
+     *             - Discussion on Popular utility Types
+     *             - Examples of Popular/Globally available utility Types
+    */
+
+
+    /*  # Index Signature: 
+              -> In very simple term , index signature in Typescript is made to type objects of unknown
+              structure when we only know the key and value types.
+
+        // Syntax of Index Signature
+           { [key: KeyType]: ValueType }
+               |      |          |
+            key---> it's type  --> value type(numbers,string)
+    */
+
+   // Examples of using index signature here
+   interface nameInter {
+       [key: boolean]: boolean,
+       [key: number]: string,
+       [key: string]: string | number | boolean, // adding union to value type
+   }
+
+   function namingFun(nameInter: string){
+       return "Hello " + nameInter;
+   }
+
+   namingFun("Dilli");
+
+   let exampleMore: nameInter = {
+       "indexKey1": "string1",
+       "indexKey2": "string2",
+       708: "Dilli Hang ",
+       822: "BIB no",
+       "unionEg": false,
+       true: false, 
+   }
+
+   //example of index signature
+   let nameCollect: { [index: string]: number } = {}
+   nameCollect.Dilli = 23;
+   console.log(nameCollect);
+   // output will be { Dilli: 23 }
+
+   nameCollect.HangRai = "string"; //compile error -> Type 'string' is not assignable to type 'number'
+
+   //Index signatures like this one can also be expressed with utility types like Record<string, number>.
+   // we will now discuss about utility in typescript
+
+
+   /*
+    # Utility in Typescript
+      - we have use type keyword to determine the data type in the previous learning right 
+      - as Typescript has large number of types so sometimes we need to know the common type manipulation
+      - or type which is used to facilitate common type transformations is known as UTILITY TYPES.
+      - UTILITY TYPES are used to create a new type from an existing type.
+
+      // Typescript also provide buch of globally available utilites
+      // examples: Partial<Type> Required<Type> Omit<Type>
+   */
+
+
+    /* 
+      #Partial 
+        - This utility type create a new type , setting all of the properties of the given 
+          argument type to optional. Takes a type as an argument.
+        - It changes all the properties in an object to be optional.
+    
+    */
+
+    // Interface
+    interface guitar {
+        model: string | number;
+        name: string;
+        price: string | number;
+    }
+
+    let newGuitar: guitar = {
+        model: 45154,
+        name: "hex",
+        price: 15000
+    }
+
+    let oldGuitar: guitar = {
+        model: 451,
+        name: "gibson",
+    }
+
+    // error be-->Property 'price' is missing in type '{ model: number; name: string; }' but required in type 'guitar'.ts(2741)
+    // 'price' is declared here.
+    // error has araise because our interface always checks the members present inside it with correct data type
+    // SO what if we may not need either model, name , price any properties for that utility types comes to rescue
+    
+    let exampleGuitar: Partial<guitar> = {
+        model: "epiphone",
+        name: "gibson les paul"
+    }
+    // see no error even not providing price, this shows partial has made type to arguments which are optional
+    exampleGuitar.model;
+
+
+    /** # Required and Record Utility 
+     *        --> Rewuired changes all the properties in an object to be required.
+     *             It also takes a type as an argument.
+     *             It changes properties in an object which must be included eventhough it is optional as ? inside the interface
      * 
-     */
+     * */ 
+
+    // for example of required utility
+    
+    interface Maths {
+        calcus: string;
+        variables: string;
+        equation?: string;
+    }
+
+    // with required utility 
+    let studentMaths: Required<Maths> = {
+        calcus: "Very interesting",
+        variables: "declare a variable",
+    }
+
+    // getting error as ---> Property 'equation' is missing in type '{ calcus: string; variables: string; }' but required in type 'Required<Maths>'.ts(2741) -- 'equation' is declared here.
+
+    // solve error by providing the equation
+    let studentMath: Required<Maths> = {
+        calcus: "Very interesting",
+        variables: "declare a variable",
+        equation: "no equation"
+    }
+
+
+
+
+
+
+
 
 
 
