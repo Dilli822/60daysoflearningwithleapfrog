@@ -1938,6 +1938,12 @@ for(j = 0; j < firstArrayType.length; j++){
     // error has araise because our interface always checks the members present inside it with correct data type
     // SO what if we may not need either model, name , price any properties for that utility types comes to rescue
     
+
+    /** Day - 24 - continue Typescript Utility Types 
+    *            - keyof in Typescript
+    *            - revision from the start
+    */
+
     let exampleGuitar: Partial<guitar> = {
         model: "epiphone",
         name: "gibson les paul"
@@ -1945,12 +1951,10 @@ for(j = 0; j < firstArrayType.length; j++){
     // see no error even not providing price, this shows partial has made type to arguments which are optional
     exampleGuitar.model;
 
-
     /** # Required and Record Utility 
      *        --> Rewuired changes all the properties in an object to be required.
      *             It also takes a type as an argument.
      *             It changes properties in an object which must be included eventhough it is optional as ? inside the interface
-     * 
      * */ 
 
     // for example of required utility
@@ -1975,6 +1979,102 @@ for(j = 0; j < firstArrayType.length; j++){
         variables: "declare a variable",
         equation: "no equation"
     }
+
+    // # Record utility is used to define an object type with a specific key and value type.
+    // Record<string, number> is equivalent to { [key: string]: number }
+
+    const fixedUser: Record <string, number> = {
+        'Bob': 51,
+        'Marley': 41
+    }
+    
+    const errEg: Record <number, string> = {
+        1: "string",
+        "string": 1, // getting error as
+        /** (property) "string": number
+        Type '{ 1: string; string: number; }' is not assignable to type 'Record<number, string>'.
+        Object literal may only specify known properties, and '"string"' does not exist in type 'Record<number, string>' **/
+    }
+
+    /** # Pick utility Type
+     *            - As name suggest Pick means to pick any selected items
+     *            - Like if we go to the market or store we donot buy all the items right? we only pick the required items from store, grocery or from shop
+     *            - similar in programming like we pick required specific data/ object from common interface or some sort of data collection
+     *      # syntax is Pick<Type, keys>
+     *            - Pick removes all but the specified keys from an object type.
+     *            - It creates a new type, by picking the set of properties from a given type. It takes two arguments: a type and a string or union of strings.
+     */ 
+
+    // for example
+    interface constantUser {
+        id: number | string,
+        name: string,
+        email: string,
+    }
+
+    const pickedUser: Pick <constantUser,"id" | "name"> = {
+        id: 1,
+        name: "dilli"
+    }
+
+    pickedUser.name;
+    pickedUser.id;
+    // This will create a new type with only supplied properties of id and name as pick arguments
+
+
+    /**  Omit Utility Type
+     *                 - This is exact opposite of pick utility type in the pick type
+     *                 - we only pick the selected ones but with Omit we reject or donot include the properties
+     *      # syntax will be
+     *             Omit <Type, keys>
+     * let's understand with example.
+    **/
+    interface exOmit {
+        id: string | number;
+        first_name: string;
+        last_name: string;
+        address: string;
+        age: number;
+    }
+
+    const exampleOmit: Omit <exOmit, "address" | "age"> = {
+        id: 708,
+        first_name: "Dilli Hang",
+        last_name: "Rai",
+    }
+
+    const erroromit: Omit<exOmit, "id" | "first_name" | "last_name"> = {
+        age: 23,
+        address: "Tarahara",
+        id: 822
+        // getting error as --Type '{ age: number; address: string; id: number; }' is not assignable to type 'Omit<exOmit, "id" | "first_name" | "last_name">'.
+        // Object literal may only specify known properties, and 'id' does not exist in type 'Omit<exOmit, "id" | "first_name" | "last_name">
+    }
+    // Exclude utility type removes types from a union
+    type excludeExample = number | boolean;
+    const myValue : Exclude<excludeExample, number> = 15454; // error as --Type '15454' is not assignable to type 'string | boolean'.
+
+
+    /** #Keyof in Typescript
+     *        - It is a keyword in Typescript which is used to extract the key type from an object type
+     *        - It is similar to typeof used in javascript which is very important while debugging.
+     *         The keyof operator takes an object type and produces a string or numeric literal union of its keys. The following type P is the same type as “x” | “y”:
+     */ 
+
+    interface egKey {
+        name: string,
+        age: number
+    }
+
+    let pupil: egKey = {
+        name: "harry",
+        age: 22
+    }
+
+
+
+
+
 
 
 
