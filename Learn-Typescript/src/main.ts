@@ -2072,6 +2072,92 @@ for(j = 0; j < firstArrayType.length; j++){
     }
 
 
+    /* Day - 25  - keyof in Typescript
+                 - Typescript Exercises with examples
+                 - Short explaination on Exercise
+                 - source w3schools.com
+    **/
+
+   /** keyof
+    *    - It is a operator which takes an object type and it is used on an object type with explicit keys
+    *    - It createa a union type with those keys.
+    *    - It is used to extract the key type from an object type.
+    * 
+    */
+
+   type foam = {
+       name: string;
+       id: number;
+       location: string;
+   }
+
+   type hippo = keyof foam;
+   // now the hippo will be union of types "name" | "id" | "location"
+
+   // can be used for non-primitive types
+   type BooleanKeys = keyof boolean; // hover over type identifier --> "valueOf"
+   type numberingKeys = keyof number; // hover over type identifier --> "toString" | "toFixed" | "toExponential" | "toPrecision" | "valueOf" | "toLocaleString"
+   type SymbolKeys = keyof symbol; // "toString" | "valueOf
+
+   // interface + function with keyof
+   interface collect {
+       name: string;
+       founder: string;
+       year: number;
+   }
+
+   function findCollect(collection: collect, details: keyof collect){
+       console.log(`finding the right collection is ${details}: "${collection[details]}"`);
+   }
+
+   let finalCollect = {
+       name: "smaple",
+       founder: "alibaba",
+       year: 1999,
+   };
+
+   findCollect(finalCollect, "name"); // it should give  finding the right collection is: "sample".
+
+   // Exercise 1 - Typescript allows developers to add types to the javascript.
+
+   let eam: string = "this is string"; // this feature is not allowed in Js
+   let eamM = "string";
+
+   // Exercise 2 - Javascript is loosely typed language where as typescript is not.
+   eam.toLocaleLowerCase();
+   eam.hike(); // this is error in typescript but no error in pure javascript file
+
+
+   // Exercise 3 - Typescript allow or provide feature of configuration throught tsconfig.json file 
+   // which is javascript notation format .json whereas Javascript doesnot have any config file
+
+
+   // Exercise 4 - Methods to assign type/ method to type anotation in Typescript
+   // one is explicitly and another is implictly
+
+   // Explicit --> adding a type directly to our codebase
+   const deer: string = "animal";
+   let river: string = "source of water";
+
+   // Implicit --> adding a type / inferred by the Typescript inference
+   let dynamic = "inferred string";
+   // hover over dynamic to see --> let dynamic: string
+
+   // Exercise 5 -  How to disable type checking in Typescript
+   // simply adding special data type any 
+
+   let all: any;
+   all = null;
+   all = "string";
+   all = 4515454;
+
+
+
+
+
+
+
+
 
 
 
