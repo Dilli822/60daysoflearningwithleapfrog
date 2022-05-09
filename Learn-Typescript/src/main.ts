@@ -2152,6 +2152,91 @@ for(j = 0; j < firstArrayType.length; j++){
    all = 4515454;
 
 
+    /*
+ // Day - 26  - Typescript Tuples 
+              - Operations in Tuples
+              - Tuples in functions 
+              - Readonly and Destructuring of Tuples
+*/
+ /** ## Typescript Tuples 
+            - Arrays are the set of collection of similar in a general way of understanding.
+ *           - It is a new data type which contain minimum two or more than two values of different of data types.
+ *           - We define tuple by speciying the each element data type inside the array for eg: nameofTuple = [number,string,boolean];
+ *           - It has pre defined length and types for each index.       
+ * 
+// This could be lengty process if we want to store the different data types inside the collection
+var exampleTupe: number;
+var exampleTyple:string;
+
+// Tuples comes in resuce where we can makeour array more secure
+// Definiing Tuples: 
+let namesCollection = ["Hello", true, 0.154, null]; // this is an ordinary array with different data types
+
+// correctlydefined tuples with different data types
+let ourArrays: [boolean, string, number] = [true, "This is a string", 45154];
+
+var universeArray: [string, number, boolean];
+universeArray = ["string", 454, true];
+
+// what if I want to put it in random data types inside the universeArray
+universeArray = [true, "string", 87845848]; // compile error
+
+// error --> Type 'boolean' is not assignable to type 'string' 
+// assign correct data type inside the defined element data type
+*/
+
+let correctTuples: [string, number, boolean];
+
+// should have   
+/* let correctTuples: [string, number, boolean];
+                        |        |       |  
+      correctTuples = ["string", 7058, false];
+ */
+
+correctTuples = ["string", 7058, false];
+
+// Operations in Tuples
+// -- Push and Pop
+/**
+ * push -- add element to the tuple 
+ * pop -- remove the element to the tuple
+ */
+correctTuples.push("addingstring");
+correctTuples;
+correctTuples.pop();
+
+
+// Update/modify the  Tuple Elements
+let delTup = ['physics', 'maths','c','dl'];
+delTup[0] = 'It';
+console.log(delTup); // output will be  ['It', 'maths','c','dl'];
+
+
+// # Tuples could be cleared but cannot be deleted or tuple variables cannot be deleted
+// we can clear the fields of a type by assigning it with an empty tuple field 
+let empTuple = ["Hari", "25", "Javascript"];
+empTuple = [];
+console.log(empTuple); // output []
+
+// Readonly tuple 
+/** - It is good practice to make our tuple readonly.
+ * -Tuples only have strongly defined types for the initial values.
+ * 
+ */
+
+const makeTup: readonly [number, boolean, string] = [822, true, "This is string"];
+makeTup.push("trying to push something!"); // compile error
+// getting error as --> Property 'push' does not exist on type 'readonly [number, boolean, string]'.
+
+/**
+ * If you have ever used React useState function then you might have notice we initially state the set values and types
+ *   useState returns a tuple of the value and a setter function.
+ *   const [mobileNumber, setmobileNumber] = useState('98245154115') is a common example.
+ *  Because of the structure we know our first value in our list will be a certain value type in this case a string and the second value a function.
+ */
+
+
+
 
 
 
