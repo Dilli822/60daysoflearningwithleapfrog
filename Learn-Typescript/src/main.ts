@@ -2237,6 +2237,13 @@ makeTup.push("trying to push something!"); // compile error
 
 
 
+/** Day 27  - Continure Tuples in Typescript
+ *          - Typescript Exercises              
+*/
+
+
+
+
 
 
 
