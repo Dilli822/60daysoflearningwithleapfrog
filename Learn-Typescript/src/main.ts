@@ -2238,8 +2238,96 @@ makeTup.push("trying to push something!"); // compile error
 
 
 /** Day 27  - Continure Tuples in Typescript
- *          - Typescript Exercises              
+ *          - Typescript Exercises      
+ *          - Revision & Practice        
 */
+
+// # Destructuring Tuples in Typescript
+/*  - Tuples are arrays so we can destruct them
+    - Breaking up the structure of an entity is called destructuring
+**/
+
+const deArr = [10, "dilli", false, null];
+const [deb,dec] = deArr;
+
+console.log(deb);
+console.log(dec);
+
+// output will be
+//  [10, "dilli", false, null]
+// 10
+// dilli
+
+// Exercises
+// Exercise 5 - specify the variable to unknown type
+let unknow: unknown;
+console.log(unknow); // could be unknown variable type
+
+//Exercise 6 - Prevent the array from being changed 
+let exaArr: readonly string[] = ["Nochange in array", "nochange"];
+console.log(exaArr);
+
+
+// Exercise 7 - Tuples must have order of value types
+
+// const tupleE = [string, number, boolean];
+// const tupleE = ["string", 822, true]; // this is correct tuple form
+// const tupleE = [true, "hello", 8554]; // this is wrong tuple form
+
+// Exercise 8 -  Defining the tuples list as string number 
+// let defineMe = [string, number];
+
+// Exercise 9 - adding the correct types for the object
+// assigning correct data types inside the parameters of an object
+const guitarReview: { name: string, model: string|number, electric: boolean} = {
+    name: "Fender Stratocaster",
+    model: "Mexican 7045",
+    electric: true
+};
+
+// Exericse 10 - optional concept - specify the second propery called model as optional
+// ans with adding just ? 
+const mobile: { fullName: string, model?: string } = {
+    fullName: "iphone 13 pro Max"
+}
+
+// Exercise 11 - Enum creation with constants members
+// - Create an enum called ourEnum with 7 constants(I, we , you, they, have, them, us) with default values
+enum ourEnum {
+    I,
+    love,
+    progamming,
+    solving,
+    coding,
+    reading,
+    creating
+}
+
+//Exercose 12 - Put all the values inside the enums member by creating meaningful enum
+enum myGuitar {
+    name= "crescent",
+    type = "electric",
+    string = 6,
+    color = "black"
+}
+
+// Exercise 13 - Creating Type alias for a string called ampType
+type ampType = string;
+
+// Exericse 14 - Create an Interface with any name with property as string
+interface myPc {
+    fulllName: string
+}
+
+// Important Exercise 15 - Extend the myPc interface from last exercise, and add a property myExtProp as a number:
+interface extendInterface extends myPc {
+    myExtProp: number
+}
+
+
+
+
+
 
 
 
