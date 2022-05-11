@@ -2326,6 +2326,176 @@ interface extendInterface extends myPc {
 
 
 
+/** Day 28  - Continue Exercises with Typescript
+ *          - Completed Total 30Exercsise of Ts(w3schools)
+ *          - Typescript in Codecademy
+ */
+
+// Exercise 14 - Typescript Union Types
+// Specify the parameter of any function can be either string or number
+
+function anyFunc(myVar: string | number ){
+    console.log("This is myVar which is either number or string ", myVar);
+}
+
+// Exercise 15  - Typescript Functions
+// Create a function that returns the string with the return type explicitly defined:
+function wholeYear(): string {
+    return "I love solving the problems with my best effort!";
+}
+
+// Exercise 16 - Create a function that specifically does not return a value
+function wholeSem(): void {
+    console.log("I am learning typescript besides node js!");
+}
+
+// Exercise 17 -  Create a function with any two parameters with same type
+function myFish(firstPara: string , secondPara: string){
+    return (firstPara + secondPara);
+}
+
+myFish("Javascript", "Typescript");
+
+function anotherMe(first: number , second: number){
+    return (first + second);
+}
+anotherMe(822, 708);
+
+
+// Exercise - 18 - Create a function with 2 parameters with same type either one is optional
+function visitMe(fir: string, sec?: string){
+    return (fir + sec)
+}
+
+visitMe("This is fixed string argument");
+
+// Exercise -19 - Casting in Typescript - Cast unknown variable as a string using keyword
+
+let tokyoMe: unknown = "This is string";
+// this is type casting to any type with as keyword
+console.log((tokyoMe as string).length);
+
+// Exercise - 20 - Cast the "unknown" variable firstVar as a string, using bracket sign <>
+let everMe: unknown = "String";
+// using bracket <> string with variable to access the length property
+console.log((<string>everMe).length);
+
+let guitarBuy: unknown = 1900;
+console.log((guitarBuy as number).toLocaleString);
+
+let buyAudio: unknown = "Focusrite";
+console.log((<string>buyAudio).toUpperCase);
+
+// Exercise 20  - Private, public & protected concept exercise
+// Specify that any className.property can be only be accessed within the class but that method 
+// className.property() can be accessed anywhere
+
+class demoClass{
+    private prName: string;
+
+    public constructor(prName: string){
+        this.prName = prName;
+    }
+}
+
+// console.log() we cannot access to prName as it is private and can be only be accessed inside the class demoClass
+class anotherClass {
+    
+    // private variable
+    private guest: string = "dilli";
+
+    // creating public constructor for class
+    public constructor(guest: string){
+        this.guest = guest;
+    }
+
+    // now guest is public inside the getGuest() method
+    public getGuest(): string {
+        return this.guest;
+    }
+}
+
+// Exercise - 21 - Typescript Basic Generics
+// create a function generic type
+function createPair <typeX, typeY> (x: typeX, y: typeY): [typeX, typeY] {
+    return [x, y];
+}
+console.log(createPair<string, number> ('digital logic', 01));
+
+function myOWn <typeA, typeB> (a: typeA, b: typeB): [typeA, typeB]{
+    return [a, b];
+}
+console.log(myOWn<string, number> ("C-progamming", 1972));
+
+
+// Exercise - 22 - Typescript Utility Types
+// - Declare an object kindPerson from the Person Interface, where all the properties are optional.
+// how to make the interface properties optional in a variable
+
+interface Person {
+    name: string;
+    age: number;
+    surname: string;
+    id: string | number;
+}
+
+let kindPerson: Partial <Person> = {};
+
+interface firstSemester {
+    physics: string;
+    maths: number | string;
+    IT: null;
+    C: string;
+    DL: boolean;
+}
+
+let newSub: Partial <firstSemester> = {};
+
+// Exercise - 13 - Required properties
+// Declare an object with objectName from the interface sample where all the properites are compulsory
+
+interface freeSample {
+    sampleName: string;
+    expiryDate: number;
+    illegal: boolean;
+    spam?: null;
+}
+
+let symbol: Required <freeSample> = {
+    sampleName: "Borax",
+    expiryDate: 2025,
+    illegal: false,
+    spam: null,
+};
+
+// Execrise - 14 -  Record
+// The TypeScript Record<Keys, Type> utility type is used to construct a new type whose properties are
+// Keys and values are Type. The Record type helps you create a new TypeScript type from a union type.
+// Record  <string, number> is equivalent to { [key: string]: number }
+const createMe: Record <string, number> = {
+    okay: 200, // { key: value} key is string and value is number
+    bad: 404
+}
+
+
+// ## Learning Typescript in Codecademy 
+// source : https://www.codecademy.com/courses/learn-typescript/
+
+/** Types:
+ *       - tsc is used as typescript transcompiler (tsc is a command line that run on bash)
+ *       - with tsc it will compile the ts code and create an equivalent .js file in the same directory.
+ *       - after tsc command , check whether the file runs with node command or for that you must have node installed 
+ *       - assume you have node js on your system with node index.js (any filename.js) it should print js output
+ */
+
+
+
+
+
+
+
+
+
 
 
 
