@@ -2415,8 +2415,14 @@ class anotherClass {
     }
 }
 
+/** Day 29   - Continue Exercises in Typescript
+ *           - Learning Typescript from Codecademy
+ *           - Lessons 2 - 4 with exercises
+ */
+
 // Exercise - 21 - Typescript Basic Generics
 // create a function generic type
+
 function createPair <typeX, typeY> (x: typeX, y: typeY): [typeX, typeY] {
     return [x, y];
 }
@@ -2426,7 +2432,6 @@ function myOWn <typeA, typeB> (a: typeA, b: typeB): [typeA, typeB]{
     return [a, b];
 }
 console.log(myOWn<string, number> ("C-progamming", 1972));
-
 
 // Exercise - 22 - Typescript Utility Types
 // - Declare an object kindPerson from the Person Interface, where all the properties are optional.
@@ -2487,6 +2492,92 @@ const createMe: Record <string, number> = {
  *       - after tsc command , check whether the file runs with node command or for that you must have node installed 
  *       - assume you have node js on your system with node index.js (any filename.js) it should print js output
  */
+
+// # Lesson-2
+/* # Type Interface
+            - Variables that are assigned with different values throughout the program can be confusing or lead to bugs
+            - Suppose if I have let firstVa; which is string but later mistakely if I use same variable with numberic value
+            - then Javascript will simply parse the code it will not know or that may become problematic
+            - so to solve such problem we have interface concept in Typescript
+            - Interface will not allow us to reassign different values of same variable in a whole program
+            - Typescript will expects the data type of the variable to match the type of the value initially assigned to it at declaration.
+*/
+
+interface collectionOf {
+    thor: string;
+    tom: number;
+}
+
+let consF: collectionOf;
+consF.thor = "string";
+console.log(consF); // output must be string value
+
+
+// WAP to print the dog's age following the correct data type and value
+let aged: boolean = true;
+let realAge: number = 4;
+
+if(aged){
+    realAge = 4;
+}
+
+let dogAge = realAge * 1;
+console.log(`The age of Dog is ${dogAge} years old`); // output must be The age of Dog is 4 years old.
+
+// WAP to print your number in thor variable from above interface
+consF.thor = "dilli";
+console.log(consF);
+
+// ## Lesson 3 - Type Shape
+// By default primitive data types is known by Typescript
+/** # Type Shapes in Typescript
+ *         - Typescript doesnot only knows the types but also shapes or objects
+ *         - That means it can know what properties and methods does shapes have
+ *         - As Javascript built in types know their properties and methods
+ *         - for eg for string it will know string.length(), string.toLowerCase() method...
+ */
+
+const nickName = "dilli hang rai";
+nickName.toUpperCase(); // no compile error 
+nickName.run(); // compile error as there is no .run() method in string object shape
+// but if you code same in Js it won't show error in JS as Js is dynamic/loosely typed language
+
+
+// # Lesson - 4
+/** Any
+ *   - Any is special case where Typescript has no idea what data type it is
+ *   - Typescript will not able to infer when variables is declared without assigning an initial value
+ *   - in such situation Typescript will simply consider variable be of type any
+ *   - any means it could be anything and typescript will not throw any errors.
+ * 
+ */
+
+let doubt;  // hover over doubt which shows let doubt: any
+doubt = 0;
+doubt = 1;
+// this means doubt is now any data type 
+
+// Declare a variable with any data type assigning all primitive data types and compile it with no error
+let random;
+random = "String";
+random = 822;
+random = null;
+random = true;
+random = undefined;
+random = 45.52;
+// tsc compile it --(note: any type is dangerous to use in our big project. It is just like boats with many holes. )
+
+// If I want any input or parameter of any data type or anything with no regards then we use any 
+var inputId;
+
+function getId(username:string){
+    inputId = 822;
+    return username + " " + " 's" + inputId;
+}
+
+getId("Dilli"); //expected output will be Dilli's 822; 
+
+
 
 
 
