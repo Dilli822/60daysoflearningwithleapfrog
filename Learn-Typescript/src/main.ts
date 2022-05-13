@@ -2528,6 +2528,12 @@ console.log(`The age of Dog is ${dogAge} years old`); // output must be The age 
 consF.thor = "dilli";
 console.log(consF);
 
+
+/** Day 30   - Continue From Lesson 3
+ *           - Lesson 3 to 5 (Learning from Codecademy)
+ *           - Review of Learned Lessons
+*/
+
 // ## Lesson 3 - Type Shape
 // By default primitive data types is known by Typescript
 /** # Type Shapes in Typescript
@@ -2569,7 +2575,6 @@ random = 45.52;
 
 // If I want any input or parameter of any data type or anything with no regards then we use any 
 var inputId;
-
 function getId(username:string){
     inputId = 822;
     return username + " " + " 's" + inputId;
@@ -2577,7 +2582,78 @@ function getId(username:string){
 
 getId("Dilli"); //expected output will be Dilli's 822; 
 
+// # Lesson-5  # Variable Type Annotations
+/** Type Annotations:
+ *         - In Javascript we just causally declare and assign values to variables
+ *         - Same in Typescript if we just do that process meaning of using Ts is useless
+ *         - Typescript may refer the unassigned type to any which could break our code anytime
+ *         - Type anotation comes to rescue in such cases, it used alongside the variables
+ *         - We use type anotation by appending a variable with a colon (:) eg: variablename: string = "String";
+ */
 
+let examAno: string; let exafg: number; let exfgn: boolean;
+
+examAno = "This is the part of me!";
+exafg = 8224541;
+exfgn = "String"; // compile error as exfgn variable have boolean as type anotation
+exfgn = true; // no error 
+
+// Note: above all type anotations are declared explicitly and when it is compiled in Js Ts auto remove the anotations
+
+/* # Reviews on Learned Lessons + Practice Sessions 
+  1. Typescript is a superset of Javascript that add types and have some added features + functionality.
+
+  2. Type System refers to TypeScript's understanding of how our code is meant to be function: 
+        For eg:let examStr = "Rodong"; // hover over examStr and we let examStr: string
+
+  3. Type interface allows us to use multiple variables to match the type of value intially assigned.
+      One of the most popular and widely used functionality of Typescript, superhandy.
+
+  4. Object Shape describes/Undestands/know the methods & properties that it contain or not.
+
+  5. If Typescript doesnot know the type of implicit variable it will consider/assign to any.
+
+  6. Type anotations are little pieces of code indicate the variable's type meant to be. It is always present besides the variable.
+**/
+
+// Review 1
+let helloMe = "Hello from Javascript"; // this is only javascript
+let hello_me: string = "Hello from Typescript"; // this is in typescript, Javascript won't allow this
+
+// Review 2
+let examStr = "Rodong"; // infer to type string
+let gheeY = false;
+
+// Review 3
+// hetic to have so many variable assigned with type anotations better to have common variables with common type
+interface collectionMe {
+    xName: string;
+    xAge: number;
+    xId: number;
+    xAddress: string;
+}
+
+// interface used for creating an object
+let nuh: collectionMe = {
+    xName: "Dilli",   
+    xAge: 855,
+    xId: 451,
+    xAddress: "Nepal"
+}
+// interface used for creating variable accessing interface members which is a string
+let mhn: collectionMe;
+mhn.xAddress = "Itahari-20";
+
+// Review 4
+let jumpOver: string = "UPPERCASE";
+jumpOver.toLocaleLowerCase(); // no error
+jumpOver.runover(); // compile error no such properties exists
+
+// Review 5
+var ghy; // any as no infered data type
+ghy = "string";
+ghy =  45145;
+// var ghy: any Variable 'ghy' implicitly has an 'any' type, but a better type may be inferred from usage.
 
 
 
