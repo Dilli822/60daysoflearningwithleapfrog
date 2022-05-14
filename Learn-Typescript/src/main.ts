@@ -2624,6 +2624,12 @@ let hello_me: string = "Hello from Typescript"; // this is in typescript, Javasc
 let examStr = "Rodong"; // infer to type string
 let gheeY = false;
 
+
+
+/* Day 31  - Continue Reviews of Lessons 1 - 5
+ *         - More on tsconfig.json file 
+ *         - Intro of Functions in Typescript 
+ */
 // Review 3
 // hetic to have so many variable assigned with type anotations better to have common variables with common type
 interface collectionMe {
@@ -2654,6 +2660,73 @@ var ghy; // any as no infered data type
 ghy = "string";
 ghy =  45145;
 // var ghy: any Variable 'ghy' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+
+/**# The tsconfig.json file
+ *            - As we all know typescript adds types to javascript regular code. It detects the syntax errors before run time.
+ *            - Because of these features typescript has flexibility. It has default rules which it tries to enforce.
+ *            - tsconfig.json is used, If we donot want to add default rules and make more customization telling the compiler what to run and more.
+ */
+
+/* # tsconfig.json
+            - It is in json format & always placed in the root of our project so we can customize the rules and tell the compiler what 
+              to enforce. Let's see the example:
+              {
+                "compilerOptions": {
+                "target": "es2017",
+                "module": "commonjs",
+                "strictNullChecks": true
+            },
+//           "include": ["**/ *.ts"]
+//        }
+// Notes: tsconfig.json can be configured and customized according to project needs at the begining of project.
+/**
+ * #Let's understand the tsconfig.json files properties,
+ *    - compilerOptions - It is a nested object that contains the rules for the Typescript Compiler to enforce.
+ *       -- Inside the compilerOptions 
+ *           - "target", with value es2017 that means it is telling compiler to compile the ts file into ecmascript2017 versions standard of Javscript.
+ *           - "module", our project will using common.js syntax to import and export modules
+ *           - "strictNullChecks", telling true that means it will check strictly , variable can only have null or undefined values, if they are explicitly 
+ *              assigned those values.
+ * 
+ *      - "include"
+ *         - it determines what files the compiler applies the rules to, above tsconfig.json instructs the compiler should check every single file that has a.ts extension
+ * # with tsconfig.json projects and team will always stays on same page with common configuration.
+ * # with tsc filename.ts we can compile the Typescript file to regular Javascript.
+ */
+
+// # Lesson -6 Intro of Function in Typescript
+/**    - error handling solutions to avoid undesirable effects --> throw new Error ()
+ *     - Javascript often allows function to be invoked with unexpected argument types.
+*/
+
+// Example showing javascript allows function to be invoked with invalid types
+function singer_song(lyrics){
+    console.log(lyrics.length);
+}
+singer_song(3); // output will be undefined
+
+// create a function that prints the name of a person more than6 times passing the number as count
+function nameCreate(name:string, count:number){
+    // looping
+    for(i = 0; i < count; i+=1){
+        console.log("Number of count is " +  `${count}` + " " + `${name}`);
+    }
+}
+nameCreate("Dilli", 6); // expecred it prints the name of person 6 times with count 6
+
+// Create function which only execute if supplied argument is number
+function printSum(x,y){
+    if(typeof x!== 'number' || typeof y!== 'number'){
+        // throwing error
+        throw new Error("Both arguments must be number! You must have entered the characters or string!")
+    }
+    console.log(x+y, x/y)
+}
+//calling function
+printSum(98,6);
+
+
 
 
 
