@@ -2727,6 +2727,117 @@ function printSum(x,y){
 printSum(98,6);
 
 
+/** Day - 32   - Lesson 7 - 10 from Codecademy
+ *             - Parameter Type Anotations
+*              - Optional Parameters
+               - Inferring Return Types
+
+// # Lesson 7  - Parameter Type Annotations
+                  - We use function parameters with type anotations with the same syntax as we explicitly declare in variable
+                  - using colon next to the variable name like this (variableName: string) this is the benefit of using Ts
+                  - It makes our code secure and avoid the code breakage
+
+**/
+// function without Parameter Type Anotations
+// hover over parameter it show any data type 
+function givingID(name, userID){
+    return name + userID;
+}
+givingID("Dilli", 822); 
+
+// Function with Parameter Type Anotations
+function trip(id:number){
+    return id * 2;
+}
+
+function giveTrip(username: string, id:number){
+    console.log(`${username}, ${trip(id)}!`);
+}
+
+giveTrip("Dilli", 708);  //output Dilli, 1416
+
+
+/*Lesson 8 -#Optional Parameters
+ *         - Typescript strictly make compulsory to all the arguments in a function 
+ *         - arguments must be provided value with data type but this may not be required or desirable
+ *         - suppose I have function which return user address and companyNumber but it is optional to get companyNumber
+ *         - for that case we need optional functionality in our code/app which is optional Parameters
+ *         - with question mark syntax we can use optional features within Typescript
+ */
+
+// Function without optional parameters
+function noOptional(color: string, hexCode: number | string){
+    return color + hexCode;
+}
+noOptional("black"); // compile error --Expected 2 arguments, but got 1.
+
+// Function with optional Parameters
+function getUser(status: string, ipAddress?: number){
+    console.log(`${status}` + `${ipAddress}`);
+}
+getUser("online"); // see no error 
+
+// adding ? along parameter tells Typescript that parameter is allowed to be undefined and not necessary to be provided
+function student(name?:string){
+    console.log(`Hello, ${name || 'Anonymous'}!`);
+}
+student(); //prints Hello, Anonymous
+
+
+/* Lesson 9 # Default Parameters
+               - if we have optional parameter then we also have default parameter (if parameter is assigned to default value)
+               - default parametes is same as variable with no type assigned is infered by Typescript
+               - This functionality is used if unknown/guest users enters in our system/app
+               */
+// Example with default parameters
+function hello(name = 'Anonymous'){
+    console.log(`Hello, ${name}`);
+}
+hello(); // prints Hello Anonymous if no argument passed as default parameters is given
+// note: remember it only accepts string not other argument type
+
+// write a function with for loop having default parameter which return default parameter for more than 3 times or 1 time
+function proN(status = "online....", repeat = 0){
+    if(status = 'online', repeat != 0){
+        for(let i = 0; i < repeat; i += 1){
+            console.log(`${status}`);
+        }
+    }
+    else if (repeat == 0){
+        console.log('offline...');
+    }
+}
+proN(); //output offline
+proN('online..', 1); // output online print once
+
+/** # Lesson 10    # Inferring Return Types
+ *                     - Typescript can alos infer the types of values returned by functions
+ *                     - It does this by looking at the types of the values after a function’s return statements.
+ */
+
+// we have created a function with string parameter which is concat with return statement
+// our return statement will know that it is infered to string type till now no assiging the value
+// after that function is stored in variable providing the string value inside argument of function lookup()
+function lookup(guest: string){
+    return `THIS IS , ${guest}`;
+}
+const looked = lookup('jacky is guest with string type'); // no error as string is intialized here as value
+const lookeD = lookup(74848); // compile error
+
+// VERY GOOD EXAMPLE & CHALLENGE
+/* Challenge! Using what you’ve learned above, create a variable myVar with the type number. To make this more interesting:
+You must not use the : character.
+You must not type any numbers into your code.
+You may not use functions other than the one provided in main.ts.
+*/
+function getRandomNumber(){
+    return Math.random(); // Math.random is a built in function that generates random numbers
+}
+const myVariable = getRandomNumber(); // output 0.9091967502712321
+
+ 
+
+
 
 
 
