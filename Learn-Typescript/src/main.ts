@@ -2835,11 +2835,141 @@ function getRandomNumber(){
 }
 const myVariable = getRandomNumber(); // output 0.9091967502712321
 
- 
+
+/** Day - 33   - Lesson 11 - 14 from Codecademy
+*              - Explicit Return Types +  Void Return Type
+*              - Documenting Functions
+*              - Game to Find the Real Culprit
+**/
+
+// Leeson 11 - Function with explicit return types
+// We have declared variable explicitly with type we do same process with Function
+function createFly(name?: string): string {
+    if(name){
+        return ` This is , ${name} airlines!`;
+    }
+
+    return undefined; // return undefined if name is not string type 
+}
+
+// Here function is only returning string type which make our code more tighter
+
+// Explicit Return Type can also be used in Arrow Function
+const makeFly = (airName?: string): string => {
+    if(airName){
+        return `This is ${airName}, Please Be Patient!`;
+    }
+    return undefined; // return undefined if string type is not assigned
+};
 
 
+// Lesson 12 -  Void Return Type
+/*                  - We have used explicit return type to Function which is very good practice
+                    - But what if we donot know what return type will be for that we use void return type
+                    - It is good practice to use void return type if those functions don't return anything
+*/
+
+// Function without void return type
+// It has no returned value so we must treat them as type void
+function login(year: number){
+    console.log(`This is the year, ${year}`);
+}
+
+// Function with void return type -- A proper type anotation of this function
+function loginN(year: number): void{
+    console.log(`This is void ${year}!`);
+}
+
+// Lesson 13 - Documenting Functions / Comments in Typescript 
+
+// -------- Documentation Commments ----------
+// This is single-line comment in Javascript.
+/*
+ This is multi-line comment in Javascript!
+*/
+
+/**
+ *  This is third comment style introduced in Typescript
+ *  It has new feature that it starts with double ** with backslash for mulit line comment
+ *  And again always starts with * for each new line. 
+*/
+
+/**
+ *  It is very good practice use required comment in our code! Lol I may be the one who is using lot of comments.
+ *  We place documentatino comments of functions above it's head.
+ * 
+ * @param name: name of a person
+ * @param caste: caste of a person
+ * @returns the name of person `name` with caste `caste`
+ * These special tags @param, @returns describe the function's parameters and returns of a function which is super handy for developers
+ */
+
+function getUserName(name: string, caste: string): string{
+    return `Customer Name with caste ${name} ${caste}`;
+}
 
 
+/** This function returns the salad which is nothing but combination of fruits
+ * @param fruit1
+ * @param fruit2
+ * @returns
+ */
+ function makeFruitSalad(fruit1: string, fruit2: string): void {
+    let salad = fruit1 + fruit2 + fruit2 + fruit1 + fruit2+ fruit1 + fruit1;
+    console.log(salad);
+  }
+  
+  
+  /**
+   * This function prints out the result as I'm not ready... , depending upon the looping number of times provided from arguments
+   * @param status is bt default not ready
+   * @param repeat assigned default numeric value 1
+   * @returns I'm not ready if repeat value is greater than 0
+   */
+  
+  function proclaim(status = 'not ready...', repeat = 1) {
+    for (let i = 0; i < repeat; i += 1) {
+      console.log(`I'm ${status}`);
+    }
+  }
+
+// ** Very Interesting Game --- Program that finds the Culprit with given number 1 or 2 or not
+//   function useMagnifyingGlass():string{
+    function useMagnifyingGlass():void{
+        console.log('I will use my magnifying glass.')
+      }
+    
+      useMagnifyingGlass();
+      
+      function determineCulprit(){
+        return Math.floor(Math.random()*2+1)
+      }
+    
+    //   function doSleuthing(numberOfClues:number, clue1:string, clue2:string, suspect1:string, suspect2:number):void{
+      function doSleuthing(numberOfClues:number, clue1:string, clue2:string, suspect1:number, suspect2:number){
+        console.log('I am a famous detective and I will solve the crime.');
+        // let unnecessaryVariable = 'Why is this here?'
+        // let unnecessaryVariable = useMagnifyingGlass();
+      
+        console.log('Now I consider the first clue: ',clue1);
+        console.log('Now I consider the second clue: ',clue1);
+      
+        // let culpritNumber:string = determineCulprit();
+        let culpritNumber: number = determineCulprit();
+        console.log('Now, I will return to you the culprit. There but for the grace of God go we.' );
+        if(culpritNumber == 1 || culpritNumber == 2 ) {return(suspect1)}
+        if(culpritNumber == 2) {return(suspect2)}
+        
+        return "I couldn't figure out who drank the priceless milk. :( :("
+      } 
+
+    export{}; // exporting the duplicating function doSleuthing
+      
+    // let answer = 3;
+    //   let answer = doSleuthing('2', 'The parrot heard everything!', 'All the doors and windows were shut from the INSIDE.', 'Burglar Bob', 'Saint Sam')
+    let answer = doSleuthing(2, 'The parrot heard everything!', 'All the doors and windows were shut from the INSIDE.', 'Burglar Bob', 'Saint Sam')
+    console.log('The culprit was none other than ', answer, '!');
+    
 
 
 
