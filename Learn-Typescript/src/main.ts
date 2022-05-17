@@ -2969,7 +2969,106 @@ function getUserName(name: string, caste: string): string{
     //   let answer = doSleuthing('2', 'The parrot heard everything!', 'All the doors and windows were shut from the INSIDE.', 'Burglar Bob', 'Saint Sam')
     let answer = doSleuthing(2, 'The parrot heard everything!', 'All the doors and windows were shut from the INSIDE.', 'Burglar Bob', 'Saint Sam')
     console.log('The culprit was none other than ', answer, '!');
+
+
+
+    /** Day - 34   - Review of Lessons 14 - 1
+     *             - Introduction of Array in Typescript
+     *             - Array Type Annotations (Explicit)
+     **/
     
+
+    /** # Review Section **/
+    // 1. We use or knew how to give type anotations to function parameters.
+
+        function paramFunc(paramOne: string, paramTwo: string){
+            console.log("This is example of function with type anotations to parameters!");
+        }
+
+        paramFunc("Hello", "World");
+
+    // 2. Keep default values to the function parameter
+        function defParam(defParam = "Hello"){
+            return `${defParam}`;
+        }
+        defParam();
+
+    // 3. Deal with type anotations for optional parameters with question mark symbol (param?: string)
+        function optPar(paraMe?: string){
+            return `This is optBar ${paraMe} !`;
+        }
+        optPar();
+
+    //  4. Void Function Return Type
+        function voidNo(blank?: void):void{
+            console.log("This is void function return type" + `${blank}`);
+        }
+        voidNo();
+
+    //  5. Explicitly specify return types for functions eg: return ` ${param} printed with string data type`
+        function hiN(juke: string | number){
+            return ` ${juke} + ${juke}`;
+        }
+        hiN("BIB NO");
+
+
+
+    /** # Lesson 14 Introduction to array in Typescript
+     *         - Array-bia: 
+     *         - Array is simply a set or collection of similar of different primitive data types.
+     *         - Array in Javascript is similar to Array in Typescript with added type of each elements inside the array
+     *         - Eg: let myArray = [0,1,2,3]; // similar data type elements -numbers
+     *               let mineArray = [45, "string", [true]]; // different data type elements -number,string,array inside array
+     *         - with added features in Typescript it is more easier to keep track of element types in arrays.
+    */
+
+    let simpleJsArray = ["Hello", "world", "This is", "string"];
+    let typescriptArray = ["strings", 855, true];
+
+
+    // create a random data type arrays
+    var randomArrays = ['string', 45154, 'c.ronaldo', true, null, undefined];
+
+    // create a function that detects unsimilar data types in elements of array randomArrays
+    function detectArray(noErr){
+        if(typeof randomArrays !== 'string'){
+            console.log("There are mixed elements in our randomArrays");
+        }
+        return `${noErr}`
+    }
+
+    detectArray("No mixed elements or error found"); // output must be There are mixed elements in our randomArrays
+
+    let customersArray = ['Custy Stomer', 'C. Oostomar', 'C.U.S. Tomer', 3432434, 'Custo Mer', 'Custopher Ustomer', 3432435, 'Kasti Yastimeur'];
+    function checkCustomersArray(el:number){
+        console.log(`Type error: ${el} should be a string!`);
+    }
+    checkCustomersArray(3432434);
+    checkCustomersArray(3432435);
+
+    function stringPush(val:string){
+         if(typeof val === 'string'){
+             customersArray.push(val);
+        }  
+    }
+    stringPush("strings");
+
+    // Lesson 15 - Array Type Annotations
+    /**             - Previously we have type annotations with parameters in function but now we do same for array 
+     *              - Typescript provide straightforward and easy method to do so we put [] after the element type.
+     *              - Eg: let egStr: string[];  // Ts expects arrays to be string type with only string elements
+     * 
+     */
+
+    let egArrType: string[]; // expects array of string
+    egArrType = ["strings", "are", "seqential", "characters"];
+    egArrType.length; // prints the length of arrays
+
+    // # Alternative method to array type annotations
+    let usersA: Array<string> = ["all ", "Are", "Strings"]; //expects all string
+    // T is for type and <> is for data type like here we have written for string
+
+
 
 
 
