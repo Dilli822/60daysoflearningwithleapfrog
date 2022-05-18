@@ -2972,7 +2972,7 @@ function getUserName(name: string, caste: string): string{
 
 
 
-    /** Day - 34   - Review of Lessons 14 - 1
+    /** Day - 34   - Review of Lessons 14 - 15
      *             - Introduction of Array in Typescript
      *             - Array Type Annotations (Explicit)
      **/
@@ -3067,6 +3067,98 @@ function getUserName(name: string, caste: string): string{
     // # Alternative method to array type annotations
     let usersA: Array<string> = ["all ", "Are", "Strings"]; //expects all string
     // T is for type and <> is for data type like here we have written for string
+
+
+    /** Day - 35   - Continue of Lesson 15 - 17
+     *             - Multi-Dimensional Arrays/Complex Arrays
+     *             - Arrays inside the array(assigning arrays)
+     *             - Tuples in Typescript
+    **/
+
+   // Lesson 15 Continue Array Type Annotations
+   //This is just like an error assignment error with primitive types.
+   let first_Arr: string[] = ["push another string here"];
+   first_Arr.push(5656); // compile error --> Argument of type 'number' is not assignable to parameter of type 'string'.
+   first_Arr.push("another string is pushed with no error!");
+
+   // Write four arrays with different type annotations
+   // Arrays:
+   let bestNumbers: number[] = [7,77,4];
+   let bestLunches: string[] = ['chicken soup', 'non-chicken soup'];
+   let bestBreakfasts: string[]= ['scrambled eggs', 'oatmeal', 'tamago kake gohan', 'any kind of soup'];
+   let bestBooleans: boolean[] = [true, false];
+   
+
+   /** Lesson 16 - Multi-Dimensional Arrays
+    *               -In previous Lesson we have only used single array with type annotaions string[]
+    *               - But we can make multiple arrays with multiple type whatever we want
+    *               - We can declare multidimensional arrays: arrays of array(of some type).
+    *               - syntax is -  let arr: string[][] = [['strings'], ['strings2]]
+    */
+   let multi_arr: string[][] = [ ["array","number", "one"], ["array", "number", "two"] ]; // arrays within the string of array
+   let multip_Arr: number[][] = [ [41521, 85645.52, 48541] , [41652, 5212, 68594] ];
+   let fun_me: number[][] = [ [0101, 1101, 1111, 1100], [1000, 10011, 1001]]; // Octal literals are not allowed in strict mode donot use octal literals 
+
+   // Empty Arrays: string[] = [] are compatible to any data type untill it is assigned
+   let namingH: string[] = []; // No type errors
+   let minhJ: number[] = []; // No type errors
+
+   namingH.push("Pusing string");
+   minhJ.push(8521);
+
+   let numberMulti: string[][][] = [ [], [], [] ];
+   // Arrays:
+   let bestNumberss: number[] = [7,77,4];
+   let bestLunchess: string[] = ['chicken soup', 'non-chicken soup'];
+   let bestBreakfastss: string[]= ['fasting', 'oatmeal', 'tamago kake gohan', 'any kind of soup'];
+   let bestBooleanss: boolean[] = [true, false];
+   
+   // Multidimensional Arrays:
+   let bestMealPlan: string[][] = [bestLunchess, bestBreakfastss, ['baked potato', 'mashed potato']];
+   let bestBooleansTwice: boolean[][] = [bestBooleanss, bestBooleanss];
+   let numbersMulti: number[][][]= [ [[1],[2,3]], [[7],bestNumberss] ];
+
+   // Lesson 17 - Tuples
+   /**              - We have assigned type anotation to arrays and also worked with multi-dimensional arrays
+    *               - But Javascript arrays are flexible and can have different types of elements
+    *               - Typescript only allow to define arrays with a fixed sequence of types, which we called a tuple.
+    *               - Tuple strictly checks and make sure order and specific assigned type of elments are correct
+    *  Tuple types specify both the lengths and the orders of compatible tuples, and will cause an error if either of these conditions are not met.
+    */
+
+   let this_tuple: [string, number, boolean];
+   this_tuple = ["hello", 4584, true];
+   let dynamic_tuple: [string, string, number, string, boolean];
+   dynamic_tuple = ["string", 45154, 451545, "string are set of characters", false]; // compile error as number is assigned in place of string
+   dynamic_tuple = ["helloworld", "yak", 822.2251, "dolpa", false]; // see no error 
+
+
+   /* Tuples:
+             -As far as Javascript array and Typescript tuples also act just like arrays.
+             - Tuples can also access the properties/change the elements/perform methods just like arrays
+             - BUT THEY CANNOT BE ASSIGNED TO A TUPLE VARIABLE, EVEN WHEN THE ELEMENTS ARE OF THE CORRECT TYPES.
+             - THIS SHOWS TUPLE SOMEHOW LACK COMPATIBLES WITHIN TYPESCRIPT
+    * 
+    */
+
+    let myTup: [string, string] = ["stringOne", "stringTwo"]; // tuples
+    let myA_r: string[] = ["this is only", "array"]; // only array
+    myTup = ["this is only", "array"]; // no error
+    myTup = myA_r; // Type 'string[]' is not assignable to type '[string, string]'.
+    // ARRAY CANNOT BE ASSIGNED TO A TUPLE
+
+    // Provide the correct type annotation to existing arrays
+    // Question - let favoriteCoordinates = [40, 43.2, 'N', 73, 59.8, 'W'];
+    let favoriteCoordinates: [number, number, string, number, number, string] = [40, 43.2, 'N', 73, 59.8, 'W'];
+
+    // Above given numbers are coordinates please change them as 40degree 43.2minutes north latitude
+    // and 73 degrees 59.8minutes west longitude creating new tuple
+    let change_Coordinates: [number, number, string, number, number, string] = [17, 45, 'N', 142, 30, 'E'];
+    change_Coordinates[6] = -6.825; // throwing error as change_Coordinates tuple has only fixed length 6 we cannot access elements of tuple with indices greater than 5
+
+
+    // Last time url:https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/tuples
+    
 
 
 
