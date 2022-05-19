@@ -3158,6 +3158,160 @@ function getUserName(name: string, caste: string): string{
 
 
     // Last time url:https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/tuples
+
+
+    /** Day 36   - Lesson 18 - 20 
+    *            - Array Type Inference
+    *            - Discussions on Rest Parameters
+    *            - Spread Syntax
+    * /
+     
+    /* Lesson 18
+        #  Array Type Inference
+          - Typescript can infer variables types from initial values & return statements.
+          - Similarly array type is also inferred by Typescript
+          - let retE = [true, false, true]; // this will be treated as boolean[] or boolean
+    */
+   
+    let jukeMe = [true,false, true];
+    jukeMe[3] = false; //allowing us to expand array -- No type error
+    
+    let neJu: [boolean,boolean,boolean,boolean] = [true,false,false,false];
+    neJu[2] = true;
+    
+    //tupleOfExamAnswers has fixed length of 3
+    let tupleOfExamAnswers: [boolean, boolean, boolean] = [true, false, false];
+    tupleOfExamAnswers[3] = true; // Type error! The tuple only has 3 elements.
+    
+    // soilve this with
+    tupleOfExamAnswers[2] = true; // see no error
+    // We can use concat method .concat() method
+    let myTui: [number,number, string] = [822,708, "string"];
+    let myTuiResult = myTui.concat(["STRING", 45154]);
+    // myTuiResult has the value of [822,708, "string", "STRING", 45154]; // this shows that type interference arrays Ts infers the variable as an array of numbers,not a tuple
+    
+    // Don't change this part:
+    let dogTup: [string, string, string, string] = ['dog', 'brown fur', 'curly tail', 'sad eyes'];
+    // Your code goes here:
+    let myArr:string[50] = 'not a dog';
+
+    // Create a arrays of string[] and concat method .concat() storing in another variable
+    let juIk: [string,number] = ["string",45154];
+    let jhuke = juIk.concat(["string is another sret"]);
+    let powerUp:string[50] = "string is not an easy!";
+ 
+
+    /* Lesson 19 #Rest Parameters
+                  - Assigning Types to Rest Parameters is similar to assigning types to arrays.
+                  - Function without correct rest parameter type will work but it is not type safe.
+                  - Type annotations for a rest parameter are identical to type annotations for arrays
+                  - syntax is (firstParam, ...firstParam: string[])
+    */
+   // Function without Rest Parameters
+    function smash(firstString, ...otherStrings){
+        let output = firstString;
+        for(let i=0; i < otherStrings.length; i++){
+            output = output.concat(otherStrings[i]);
+        }
+        return output;
+    }
+    smash('H','a','h','a','h','a','h','a','!','!'); // returns 'Hahahahha!'.
+   
+    // Function with Typed Rest Parameters
+    function smuh(firstString, ...secondStrings: string[]){
+        /** rest of function  */
+    }
+
+    // Make a function whose parameters must be type annotated with function gets annotations too
+    function addPower(p:string, ...numsToAdd:number[]):number{
+        let answer = 0; 
+        for(let i = 0; i < numsToAdd.length; i++){
+          answer += numsToAdd[i] ** p;
+        }
+        return answer;
+      }
+      addPower("This results ", 2,3,4); // This results 25
+
+      /** Rest Parameter -- introduced in ES2015 OR ES2016
+       *      - It is an improved way to handle function parameter which allow us to more easily handle various input as parameters in a function.\
+       *      - It also allows us to represent an indefinite number of arguments as an array.
+       *      - We can call functions as many times as we want no how matter how it was defined that improves the ability to handle parameter.
+       *      - It stores n number of parameters as an array. Here ... is the rest parameter
+       *   syntax
+       *    function functionName(...restParameters){
+       *                          statement;
+       *             }
+       */
+       function sumA(a:number, b:number){
+           return  a+b;
+       }
+       sumA(15,451);
+
+       //ES6 Rest Parameters
+       function restMe(...restPar){
+           let totalI = 0;
+           for(let i of restPar){
+               totalI+=1;
+           }
+           return totalI;
+       }
+       restMe(1,2,3); //6
+       restMe(4,5,45,9);//63
+
+
+       
+       /** Day 37 -
+        * 
+        */
+
+       //sources: https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/spread-syntax
+
+       // Note: Rest parameter must be the last given argument, as it is used to collect all the remaining arguments into an array
+       // this is useless nor not logical code
+       function hey(par, ...hy, fg){
+           //code
+           return;
+       }
+
+       // function with rest parameters returning an array
+       function returAr(x,y,...z){
+           console.log(x); // python
+           console.log(y); // C and C++
+           console.log(z); // ['nodejs','django','java']
+       }
+       returAr("python", "C and C++", "nodejs", "django", "java");
+
+       /**#Lesson 20   - Spread Syntax
+        *                  -The spread syntax allows an array or a string to expand in the places where zero or more arguments or elements are expected.
+        * 
+        */
+       let homeCoordinates: [number, number, string, number] = [7,11,"is my rollnumber", 15];
+       let groundCoordinates: [string,string,number] = ["vowel", "sounds", 5];
+
+       // let's use variables into function as rest parameters
+       function firstPr(...homeCoordinates){
+           return `this is ${homeCoordinates}`;
+       }
+       console.log(firstPr);
+
+       function secondPr(...groundCoordinates){
+           console.log(secondPr);
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
