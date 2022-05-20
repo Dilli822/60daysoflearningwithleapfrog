@@ -3258,13 +3258,12 @@ function getUserName(name: string, caste: string): string{
        restMe(1,2,3); //6
        restMe(4,5,45,9);//63
 
-
-       
-       /** Day 37 -
-        * 
-        */
-
        //sources: https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/spread-syntax
+       
+       /** Day 37   - Continue Lesson 20 - Reviews
+        *           - Rest Parameters vs Spread Operators
+        *           - Reviews with examples
+        */
 
        // Note: Rest parameter must be the last given argument, as it is used to collect all the remaining arguments into an array
        // this is useless nor not logical code
@@ -3274,17 +3273,15 @@ function getUserName(name: string, caste: string): string{
        }
 
        // function with rest parameters returning an array
-       function returAr(x,y,...z){
+       function returAr(x:string,y:string,...z){
            console.log(x); // python
            console.log(y); // C and C++
            console.log(z); // ['nodejs','django','java']
        }
        returAr("python", "C and C++", "nodejs", "django", "java");
 
-       /**#Lesson 20   - Spread Syntax
-        *                  -The spread syntax allows an array or a string to expand in the places where zero or more arguments or elements are expected.
-        * 
-        */
+       /// #Lesson 20   - Spread Syntax -The spread syntax allows an array or a string to expand in the places where zero or more arguments or elements are expected.
+
        let homeCoordinates: [number, number, string, number] = [7,11,"is my rollnumber", 15];
        let groundCoordinates: [string,string,number] = ["vowel", "sounds", 5];
 
@@ -3297,6 +3294,96 @@ function getUserName(name: string, caste: string): string{
        function secondPr(...groundCoordinates){
            console.log(secondPr);
        }
+
+       // Create a variable with tuple type annotations 
+       let huke:[string, number, boolean] [] = [["string", 454, false], ["we can store multiple strings", 5684, false]]; // can store multiple tuples
+       let hjr: [string, string, number] = ["acer", "dell", 82541]; //cannot store multiple tuples 
+
+       //Exercise from codecademy 
+       function performDanceMove(moveName:string, moveReps:number, hasFlair:boolean):void{
+        console.log(`I do the ${moveName} ${moveReps} times !`);
+        if(hasFlair){
+          console.log('I do it with flair!');
+        }
+      }
+      
+      let danceMoves: [string, number, boolean][] = [
+        ['chicken beak', 4, false],
+        ['wing flap', 4, false],
+        ['tail feather shake', 4, false],
+        ['clap', 4, false],
+        ['chicken beak', 4, true],
+        ['wing flap', 4, true],
+        ['tail feather shake', 4, true],
+        ['clap', 4, true],
+      ];
+      // looping the danceMoves with function performDanceMove using rest parameters
+      danceMoves.forEach(move => performDanceMove(...move));
+
+      // Reviews on Array types:
+
+      /* 1. The type annotation for arrays:
+                - syntax is let variable_name: string [] = ["String", "elements"];
+                                                   |   |        |
+       *                 Declaration of variabe type array   elements inside the array box
+      */
+       let arry: string[] = ["elementNumberOne", "elementNumberTwo"];
+
+       /** 2. Tuples in Typescript and their type annotations
+        *         - Unlike tuples allows us to store multiple data types & has fixed length 
+        *         - var tuple_name: [string, number, boolean, number ] = ["alpha", 454, true, 898];
+        *         - Variable Declaration  = [datatype declaration with correct order] = [assigning correct datatype with correct order]
+        *      
+        */
+
+       let tuple_ex: [string, number, string, boolean] = ["beta", 7848, "string", true];
+       // can create a empty tuple and assign data types with data later
+       let empty_tup = [];
+       empty_tup[0] ="inserting the string";
+       empty_tup[1] = 4745; //"assigning string first index and assigning number at 2nd index";
+
+       // 3. Type Inference working mechanism with arrays and tuples
+       let this_arr = ["all", "man", "are", "born", "equally"]; // hover over this_arr to see inference---> let this_arr: string[]
+       let this_tup = [414, "string", true]; // hover over this_tup to see ---> let this_tup: (string | number | boolean)[]
+
+       // 4. Rest Parameter & Spread Operator use in Typescript
+
+       // Rest Parameter also take spread operators syntax last three dots ... but it is used as final parameter of a function.
+       //All of the arguments expect the ones that are explicitly declared before the three dots passed to that function will be taken and placed in array.
+        function exaRestParam(re1:string, ...restParam:string[]){
+            console.log(re1);
+            console.log(restParam);  // output ["param1st", "param2nd"]
+        }
+        exaRestParam("param1st", "param2nd", "param3rd"); 
+        
+        function Test(me:number,...restParam:number[]){
+            console.log(me); // 1
+            console.log(restParam) // [1,2]
+        }
+        Test(1,2,3);
+
+        // Spread Operators does compressions and expands an iterable such as arrays where multiple arguments are needs
+        // It also helps to expand the object expressions or copy the same object twice
+        
+        // This is also an example of destructing an object
+        const yt:string[] = [4,5,6];
+        function spread(j,i,k){
+            console.log(j); // 4
+            console.log(i); // 5
+            console.log(k); // 6
+        }
+        spread(...yt);
+
+        let more = [0, 21, 45];
+        let moreMe = [ "string", "ch", "get"];
+        
+        let nMore = [...more]; // 0,21,45 // creating new array from existing array
+        let nMoreMe = [...moreMe, "adding more elements"]; // string,ch,get,adding more elements
+        let combined_array = [...more, ...moreMe]; // 0,21,45,string,ch,get,adding more elements
+
+       // Codecademy sources: https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/review
+
+
 
 
 

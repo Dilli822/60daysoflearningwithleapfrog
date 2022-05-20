@@ -23,3 +23,7 @@ myFunction("this is argument 1", 45454545);
 // setting default union type in ts
 var helloWorld = null;
 console.log(helloWorld);
+// alias with variables
+var exampleVar;
+exampleVar = "This is an example Var";
+var newexampleVar = [454, 4545, 4545];
