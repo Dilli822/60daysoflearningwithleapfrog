@@ -3332,8 +3332,7 @@ function getUserName(name: string, caste: string): string{
        /** 2. Tuples in Typescript and their type annotations
         *         - Unlike tuples allows us to store multiple data types & has fixed length 
         *         - var tuple_name: [string, number, boolean, number ] = ["alpha", 454, true, 898];
-        *         - Variable Declaration  = [datatype declaration with correct order] = [assigning correct datatype with correct order]
-        *      
+        *         - Variable Declaration  = [datatype declaration with correct order] = [assigning correct datatype with correct order]      
         */
 
        let tuple_ex: [string, number, string, boolean] = ["beta", 7848, "string", true];
@@ -3382,6 +3381,156 @@ function getUserName(name: string, caste: string): string{
         let combined_array = [...more, ...moreMe]; // 0,21,45,string,ch,get,adding more elements
 
        // Codecademy sources: https://www.codecademy.com/courses/learn-typescript/lessons/typescript-arrays/exercises/review
+
+       /** Day - 38    - Lesson 22 - 24 
+        *              - Types of Type in Typescript😅
+        *              - Enums(Complex Type) with example
+        *              - String Enums vs Numeric Enums 
+        */
+
+       // Lesson 22 - Introduction of Custom Types
+       /**                There are two types of type in Typescript.
+        *                        1. Pre-defined/Primitive Types
+        *                        2. Custom Types
+        *  -Typescript gives us power to use create custom type rather then staying in limited pre-defined types.
+        *  -Custom types are fun and useful because they enable type checking according to our exact purposes.
+        * - Previously we already studied and written code on custom types: tuple
+        *    Pre-defined                  VS       Custom Types
+        *  - It's like ingredients.              - Combination of custom types.
+        * Eg: only bread, tomato, onion, cheese  - Simple burger having onion+bread+tomato+cheese
+        */
+       // Eg of Complex Types
+       let myType: coTy; 
+       function testTy(param: coTy): returnedType{
+           // code here
+       }
+       let storeFun = testTy(myType);
+
+        // Lesson 23 - Enums(Complex Type)
+        /**            - One of the most useful & popular complex types is enums which is used to enumerate all 
+         *                 the possible values that a variable could have.
+         *             - TYPE STRING CAN HAVE ANY STRING AS VALUE AND INFINETLY MANY POSSIBLE STRINGS let varaible = "infinte strings.....";
+         *             - SIMILAR boolean[] TYPE CAN HAVE ANY ARRAY OF BOOLEAN AS ITS VALUE AGAIN, POSSIBILITES ARE INFINITE. let boh: boolean[] = [true,false,true,....]
+         *   // WHAT IF WE WANT TO HAVE LIMITED NUMBER OF POSSIBLE VALUES OF A VARIABLE?
+         *  // For that enum comes in resuce suppose I have Direction varibale which should have only North, South, East, West value.
+         */
+
+        enum Direction{
+            North, South, East, West
+        }
+        let showW: Direction.North; // no error as it exists inside the Direction as variable value
+        // Any other values beside birth, death are not allowed and this is law of nature
+        enum Cycle{
+            Birth, Death
+        }
+
+        let showE: Cycle; // Enum can used in type annotation like any other type - let ayrt: string[];
+        showE.reincarnation; //hover over---> type Cycle.reincarnation = /*unresolved*/ any , Namespace 'Cycle' has no exported member 'reincarnation'.
+
+        // How Typescript understands the enum types using number?
+        /**    The member of enum or enum values are always assigned numberical value in ascending listed order.
+         *     enum Direction members North, South, East, West are equal to 0, 1, 2, and 3 , respectively by default.
+         *   - like Direction enum North is assigned to a number of 0 and ascending order so now. Let's see examples
+         */
+        showW == 0; // true no error
+        showW == 1; // see error -- This condition will always return 'false' since the types 'Direction.North' and '1' have no overlap.
+
+        showW = 2; // see no error 
+        showW = 4; // see no error # Remeber we are not comparing but assigning the number value which doesnot araise error.
+
+        // We can also change the starting number by giving custom number value and enum will automate the ordering value
+        enum DirectionT {
+            North = 7,
+            South,  // equals to 8
+            East,   // equals to 9
+            West   // equals to 10
+        }
+
+        // More customizing on enum ordering
+        enum DirectionC {
+            North = 9,
+            South = 4,
+            East = 1,
+            West = 3
+        }
+
+        // Very Good Practical Example comparing mashup code and refixing the code functionality
+        let petOnSale = 'chinchilla';
+        let ordersArray = [
+            ['rat', 2], 
+            ['chinchilla', 1], 
+            ['hamster', 2], 
+            ['chinchilla', 50]
+        ];
+        // Write your code below:
+        // what if someone writes Ox on petOnSale , as Ox or any animals which is not sold by pet shop can bring error in code
+        // so for that we are writing the small app for pet shop having limited supply. let's list down the animals names
+        let petOnSale = "ox";
+        enum Pet {
+            Hamster,
+            Rat,
+            Chinchilla,
+            Tarantula
+        }
+        // reassigning the enum with correct value
+        let petOnSaleTs: Pet = Pet.Chinchilla;
+        // suppose pet shop doesnot have 50 chinchilla so someone has ordered 50 chinchilla let's fix this
+        // replace the ordersArray with enum Pet members
+        // [<pet name string>, <number ordered>]
+
+        let petOnSale = 'chinchilla';
+        let ordersArray = [
+            ['rat', 2], 
+            ['chinchilla', 1], 
+            ['hamster', 2], 
+            ['chinchilla', 50]
+        ];
+
+        // Write your code below:
+        enum Pet {
+            Hamster,
+            Rat,
+            Chinchilla,
+            Tarantula
+        }
+        const petOnSaleTS : Pet = Pet.Chinchilla;
+        const ordersArrayTS : [Pet, number][] = [
+            [Pet.Rat, 2],
+            [Pet.Chinchilla, 1],
+            [Pet.Hamster, 2],
+            [Pet.Chinchilla, 50]
+        ]
+        ordersArrayTS.push([Pet.Jerboa, 3]);
+
+        // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/enums
+
+        // Lesson 24  - String Enums vs Numeric Enums
+        /**                - Enums are referred to as numeric enums since they are based on number.
+         *                 - But no worries Typescript allows us to use enums based on string referred to as string enums.
+         * #syntax
+         *   enum DirectionNumber { North, South, East, West }
+         *   enum DirectionString { North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST' }
+        */
+
+        enum this_is_number {
+            North, South, East, West
+        }
+        enum this_is_string {
+            North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST'
+        }
+
+        
+        
+
+
+
+
+        
+
+
+        
+
+
 
 
 
