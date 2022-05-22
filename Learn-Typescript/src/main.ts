@@ -3486,6 +3486,14 @@ function getUserName(name: string, caste: string): string{
             ['chinchilla', 50]
         ];
 
+        // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/enums
+
+        /** Day 39    - Lesson 24 - 26
+        *             - String Enums vs Numeric Enums
+        *             - Object Types
+        *             - Type Aliases
+        * 
+        */
         // Write your code below:
         enum Pet {
             Hamster,
@@ -3502,8 +3510,6 @@ function getUserName(name: string, caste: string): string{
         ]
         ordersArrayTS.push([Pet.Jerboa, 3]);
 
-        // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/enums
-
         // Lesson 24  - String Enums vs Numeric Enums
         /**                - Enums are referred to as numeric enums since they are based on number.
          *                 - But no worries Typescript allows us to use enums based on string referred to as string enums.
@@ -3516,8 +3522,96 @@ function getUserName(name: string, caste: string): string{
             North, South, East, West
         }
         enum this_is_string {
-            North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST'
+            North = 'NORTH', South = 'SOUTH', East = 'EAST', West = 'WEST' // must write the string explicitly as North = 'NORTH' is a valid value definition
         }
+        // It is good practice to keep enums type member string value in capitalized form of the variable name as variable_name = "VARIBALE_NAME"
+        // This will help us in debugging, error messages and logs will be much more informative
+
+        let example_num: this_is_number;
+        example_num = 2;
+        example_num = 415451414; // assigning arbitary numbers  see no error 
+
+        let my_StrName: this_is_string;
+        my_StrName = 'aribitary string '; // error as Type '"  *&&&$ aribitary string';"' is not assignable to type 'this_is_string'
+        my_StrName = this_is_string.East; // .South, .East, .West are the only allowable way to do this.
+
+        let petOnSale = 'chinchilla';
+        let ordersArray = [
+            ['rat', 2], 
+            ['chinchilla', 1], 
+            ['hamster', 2], 
+            ['chinchilla', 50]
+        ];
+        
+        // Write your code below:
+        enum Pet {
+            Hamster = "HAMSTER",
+            Rat = "RAT",
+            Chinchilla = "CHINCHILLA",
+            Tarantula = "TARANTULA"
+        }
+        // creating type safe variable
+        const petOnSaleTS: Pet = Pet.Chinchilla;
+        const ordersArrayTS: [Pet, number][] = [
+            [Pet.Rat, 2], 
+            [Pet.Chinchilla, 1], 
+            [Pet.Hamster, 2], 
+            [Pet.Chinchilla, 50]
+        ]
+        ordersArrayTS.push(['HAMSTER', 1]); // obviously this is error we are not allowed to perform this with string enum
+
+        // Lesson 25 - Object Types
+        /**              - In this lesson we will discuss on object-oriented programming and how it relates to Typescript.
+         *               - Object Types are extermely useful as they allow us extremely fine-level control over variable types in our program
+         *               - They also falls in most common CUSTOM TYPES so I think it is easy to understand and read them.
+         *    #Type annotation for an object : let variable_name: {key: type, key: type } // quite similar to object literal but this is not
+         *    Instead of direct values apperanec after properties we have types . let variable_name: { name: string, age: number }
+         */
+        // examples
+        let xPerson: { name:string, age:number };
+        xPerson = {name: 'Peter' , age: 21 };
+        const yPerson: {name: string, id: number | string } = { name: 'Jackson', id: 708 }
+        xPerson = {name: 'PeterTY', age: 25 }; /// see no on double assigning the values to key with correct types
+        xPerson = {name: 'PeterTY', old: 25}; // see error as old property doesnot exist in xPerson Variable
+
+        // Typescript places no restrictions on the types of an object's properties they can be enums,arrays,and even other object types.
+        let myCompany: {
+            companyName: stringEnum,
+            leader: {name: string, age: number, experience: string | number },
+            teams: {name: string, address: string } [], // storing as array
+            client: string[],
+            total_revenue: number
+        }
+
+        // This is just introduction part of Object Types Yet let's do an example.
+        // function will have object types within parameter
+        function sayHappyBirthdayWithObject(personObject: {name:string, age:number, giftWish: string, success: boolean}){
+            let output ='';
+            output += 'Happy Birthday ' + personObject.name + '! ';
+            output += 'You are now ' + personObject.age + ' years old! ';
+            output += 'Your birthday wish was to receive ' + personObject.giftWish + '. And guess what? You will ';
+            if (!personObject.success){
+                output += 'not ';
+            }
+            output += 'receive it! \n';
+            console.log(output);
+            }
+
+        // assigning object types with the variable in the form array[]
+        let birthdayBabies: {name: string, age: number, giftWish: string, success: boolean}[] = [
+            {name: 'Liam', age: 0, giftWish: 'karate skills', success: false}, 
+            {name: 'Olivia', age: 0, giftWish: 'a bright future', success:true}, 
+            {name: 'Ava', age: 0, giftWish: '$0.25', success:true}
+        ]; 
+        birthdayBabies.forEach(sayHappyBirthdayWithObject);// print the output it is quite interesting program
+
+        // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/type-aliases
+        
+        /** DAY - 40
+         * 
+         */
+        // Lesson 26  - Type Aliases
+
 
         
         
