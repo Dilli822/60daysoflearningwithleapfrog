@@ -3607,10 +3607,110 @@ function getUserName(name: string, caste: string): string{
 
         // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/type-aliases
         
-        /** DAY - 40
-         * 
+        /** DAY - 40     - Continue Lesson 26 - 28
+         *               - Type Aliases with Examples
+         *               - Function Types
+         *               - Generic Types
          */
+
         // Lesson 26  - Type Aliases
+        /**               - When it comes to customization in our program, type aliases is always preferred. This could be alternative type names that we choose for convenience.
+         *                - Format is - type <alias name> = <type>; , we use type keyword withvarialeName and define the data type. 
+         *   # Where to use Type Aliases?
+         *     - It is truly useful for referring to complicated types that need to be repeated especially object types and tuple types.
+         * 
+        */
+        type stringMine = string;
+        let anTy: stringMine = "This is string! Hi from okland"; // valid code 
+
+        // Let's understand with an example
+        let thiCompany: {
+            companyName: string,
+            boss: {name: string, age: number },
+            employees: { name: string, age: number }[],
+            employeeofTheMonth: { name: string, age: number },
+            moneyEarned: number
+        }
+        // Above code has so many repetitions of string and number object types which can be cleaned with type aliases
+        // Let's make our code more cleaner and readable using type aliases
+        type People = { name: string, age: number };
+        let TiCompany: {
+            companyName: string,
+            boss: People;
+            employees: People[],
+            employeeofTheMonth: People,
+            moneyEarned: number
+        }
+
+        type thiStri = string; // type aliases are just names and have on influence over how types work. 
+        type yoStr = string;
+        let firstStr: thiStri = "test is string";
+        let secondStr: yoStr = firstStr; // Here thisStri and yoStr are just alternative names for the same thing.
+
+        // Change the following code into type aliases
+        // Add your type alias below:
+        type Coord =  [number, number, string, number, number, string];
+        // let codecademyCoordinates: [number, number, string, number, number, string] = [40, 43.2, 'N', 73, 59.8, 'W'];
+        // let bermudaTCoordinates: [number, number, string, number, number, string] = [25, 0 , 'N' , 71, 0, 'W'];
+        let codecademyCoordinates: Coord = [40, 43.2, 'N', 73, 59.8, 'W']; // see we have wrote more cleaner and readable code
+        let bermudaTCoordinates: Coord = [25, 0 , 'N' , 71, 0, 'W'];
+        let myHouseCoordindate: Coord = [45, 85, 'E', 13, 85, 'W'];
+
+        // Lesson 27 - Function Types
+        /**                - One of most unique and clean feature of Javascript is that function can be assigned to variables.
+        *                  - With Typescript added feature we can control the kinds of functions assignable to a variable.
+        */
+       // Example of function type that is only compatible with functions that take in two string arguments and return a number.
+       type StringsToNumberFunction = (arg0: string, arg1: string) => number; // type aliases declared with function that returns number 
+
+       // storing the function inside the meroFunc variable
+       let meroFunc: StringsToNumberFunction;
+       meroFunc = function (firstName: string, lastName: string){
+           return firstName.length + lastName.length;
+       };
+
+       meroFunc = function(firstParam: string, secondParam: string){
+           return firstParam.length - secondParam.length;
+       }
+
+       meroFunc("tYPE ALIASES", "IS VERY INTERESTING"); // no error as long as arguments are strings.
+
+    //    type StringsToNumberFunction = (string) => number;
+    //    type StringToNumberFunction = arg;
+    //    string => number; 
+    // Math Operations function for add, subtract, multiply, divide, wrongAdd
+    function add(a, b){return a+b }
+    function subtract(a, b){return a-b }
+    function multiply(a, b){return a*b}
+    function divide(a, b){return a/b}
+    function wrongAdd(a, b){return (a+b)+''}
+    
+    // Add your function type below: we have type aliases assigned with function which have parameters as number and function itself it type number
+    type OperatorFunction = (a:number, b:number) => number;
+    
+    // Math Tutor Function That Accepts a Callback
+    function mathTutor(operationCallback: OperatorFunction) {
+      console.log("Let's learn how to", operationCallback.name,'!');
+      let value25 = operationCallback(2,5);
+      console.log('When we', operationCallback.name, '2 and 5, we get', value25, '.');
+      console.log('When we', operationCallback.name, value25, 'and 7, we get', operationCallback(value25,7), '.');
+      console.log('Now fill out this worksheet.');
+    }
+    
+    // Call your functions below:
+    // mathTutor(multiply); // Let's learn how to multiply ! When we multiply 2 and 5, we get 10 . When we multiply 10 and 7, we get 70 .Now fill out this worksheet.
+    // mathTutor(wrongAdd);
+
+
+    /** Day -41 
+     * https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/generic-types */
+    // Lesson 28 -  Generics
+
+    
+
+
+
+
 
 
         
