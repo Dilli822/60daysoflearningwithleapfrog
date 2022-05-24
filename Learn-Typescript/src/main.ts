@@ -3702,9 +3702,140 @@ function getUserName(name: string, caste: string): string{
     // mathTutor(wrongAdd);
 
 
-    /** Day -41 
-     * https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/generic-types */
-    // Lesson 28 -  Generics
+    /** Day -41    - Lesson 28 - Reviews
+     *             - Generics Types
+     *             - Generic Functions
+     *             - Reviews
+     * continured from - https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/generic-types */
+    // Lesson 28 -  Generics Types
+    /**                - Typescript's generics are ways to create collections of types (typed functions, and more)
+     *                 - They share certain formal similarities.
+     *                 - The collections of types we created are parametrized by one or more type variables.
+     *       syntax is Array<T> - captial T denotes the data type 
+     *                  - We can replace the big T with any custom or pre-defined type for eg: Array<string> is an array of strings. 
+    **/
+    type Friends<T> = {
+        boys: [T, T], girl: T, kids: T[]
+    };
+
+    // type Friends<string> is exactly same as the object type by setting T to string our generics type with object will be
+    let myGh: Friends<string> = {
+        boys: ['dilli', 'bob'], // ['dilli', 'bob', bob'], donot do this it will throw error
+        girl: 'gauthali',
+        kids: ['nami', 'robin'],
+    }
+    // see Friends T is replaced by boolean type
+    let myT: Friends<boolean> = {
+        boys: [false, true],
+        girl: false,
+        kids: [true, true]
+    }
+
+    // that means T can be replaced by defined data type and T inside the <> represents generic types in typescript
+    // we can use another any captial letter, T is just a convention use S or GenericType
+    type Guitars<S> = {
+        name: S,
+        brands: [S, S]
+    };
+
+    let yu: Guitars<string> = {
+        name: 'lespaul',
+        brands: ['epiphone','gibson']
+    }
+
+    type Human = {name: string, job: string};
+    type Dog = {name: string, tailWagSpeed: number};
+    type Family<T> = {
+        parents: [T, T], mate: T, children: T[]
+    };
+    //Do not change the code above this line.
+
+    //Provide type annotations for the variables below:
+    let theFamily: Family<number> = {
+        parents: [3, 4], mate: 9, children: [5, 30, 121]
+    };
+    let someFamily: Family<boolean> = {
+        parents: [true, true], mate: false, 
+        children: [false, false, true, true]
+    };
+    let aFamily: Family<Human> = {
+        parents: [
+            {name: 'Mom', job: 'software engineer'},
+            {name: 'Dad', job: 'coding engineer'}
+        ],
+        mate: {name: 'Matesky', job: 'engineering coder'},
+        children: [{name: 'Babesky', job: 'none'}]
+    };
+    let anotherFamily: Family<Dog> = {
+        parents: [
+            {name:'Momo', tailWagSpeed: 3},
+            {name:'Dado', tailWagSpeed: 100}
+        ],
+        mate: {name:'Cheems', tailWagSpeed: 7},
+        children: [
+            {name: 'Puppin', tailWagSpeed: 0.001},
+            {name: 'Puppenaut', tailWagSpeed: 0.0001},
+            {name: 'Puppenator', tailWagSpeed: 0.01}
+        ]
+    };
+    // From above code we know that <> may always possess dynamic assigned data type
+
+    // Lesson 29 - Generic Functions
+    /**             - As mentioned earlier we can use generics to create a COLLECTION OF TYPED FUNCTIONS.
+     *              - Let's see example of function that returns arrays filled with a certain value.
+     */
+
+    // This function will return a array filled value right but it will show error if we try to specify the function's return type
+    // function fillingArray(value, n){
+    //     return Array(n).fill(value);
+    // }
+    // pass fillingArray('hello', 2); // output must be ['hello','hello']
+
+    // Example of using generics type with functions
+    function fillingArray<T> (value: T, n: number): T[] {
+        return Array(n).fill(value);
+    }
+    fillingArray<string>('Hello', 2);
+    // Typescript generics is telling the functions return type is string this is less prone to errors.
+
+    // or we could do this simply.
+    function anotherFilling(value: string, n: number): string[] {
+        return Array(n).fill(value);
+    }
+    // It has defect which is this function now cannot be return as number or other data type as like in generic type<T>
+    // Use the function getFilledArray<T>() to assign values to the variables stringArray, numberArray, personArray, and coordinateArray.
+
+    // Write your code so that:
+    
+    // Each value should be an array of 6 elements.
+    // All elements in stringArray should equal 'hi'.
+    // All elements in numberArray should equal 9.
+    // All elements in personArray should equal {name: 'J. Dean', age: 24}.
+    // All elements in coordinateArray should equal [3,4].
+    // Don’t forget to specify the value of T!
+    function getFilledArray<T>(value: T, n: number): T[] {
+        return Array(n).fill(value);
+      }
+      
+      let stringArrayT: string[];
+      let numberArray: number[];
+      let personArray: {name: string, age: number}[];
+      let coordinateArray: [number, number][];
+      
+      // Write your code below:
+      stringArrayT = getFilledArray<string>('hi', 6); 
+      numberArray = getFilledArray<number>(9, 6); 
+      personArray = getFilledArray<{name: string, age: number}>(
+        {name: 'J. Dean', age: 24}, 6
+      );
+      coordinateArray = getFilledArray<[number, number]>([3,4], 6); 
+      
+
+      /** https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/review
+       * Day 42 -
+       */
+      // Reviews
+    
 
     
 
