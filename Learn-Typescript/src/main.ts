@@ -3832,10 +3832,107 @@ function getUserName(name: string, caste: string): string{
       
 
       /** https://www.codecademy.com/courses/learn-typescript/lessons/typescript-custom-types/exercises/review
-       * Day 42 -
+       * Day 42 -      - Short Reviews
+       *               - Lesson 30 - 32
+       *               - Intro of Union Types
+       *               - Defining Unions
        */
       // Reviews
-    
+      /*    1. We have learned custom types in typescript which is very useful and importants
+            2. We are now not limited to pre-defined types.
+            3. Enums (noth string and numeric types )
+            4. object types(OOP)
+            5. Function types
+       */
+    // Lesson 30 - Introduciton of Union
+    /*               - Typescript lets us type variables with different levels of type specificity.
+                     - We can use type string , number, boolean by specifying them or providing annotation.
+     *               - What if I want to print the user's id which can be string or number or both.
+                     - we have special type declaration keyword any which allow any type or anything to be assigned
+     */
+
+     let userID: any = 7484487;
+     console.log(userID);
+     userID = "708-A";
+     console.log(userID);
+     console.log(userID = true); 
+     // see we have assigned userID as number,string even as boolean with any 
+     // BUT USING ANY IS NOT GOOD PRACTICE AS IT DISABLE TYPESCRIPT MAIN WORK OR TYPE CHECKING WHICH CAN LEAD TO BUGGY PROGRAMS & ERROS
+     // To solve above program Typescript allows us to be flexible with how specific our types are by combining different types which we called union.
+     // Union means unity in general terms/concept similar in typescript union of types .ie. variable can be string,number,boolean with union
+
+     let my_ID: string | number; // allow us to define multiple type members separated by vertical line character | 
+     my_ID = 708;
+     my_ID = "E-708"; // re-using the program here
+     console.log(`Id is ${my_ID}`); 
+
+     let my_Age: string | number; // more flexible & safer than any
+     my_Age = "twenty-three";
+     console.log(`My age in string is ${my_Age}`);
+     my_Age = 23;
+     console.log(`My age in number is ${my_Age}`);
+
+     // #Lesson 31 -  Defining Union with examples
+     // Unions can be used as our required anywhere a type value, even inside the functino parameters
+     function myRaceTime(time: string | number ){
+        return { 'fullTime': time}
+     }
+     myRaceTime(156);
+     myRaceTime("156seconds");
+     myRaceTime(200); // SUPER useful as function often need to handle the input type 
+
+     function printNumsAndStrings(statement:string | number) {
+        console.log(`ℹ️ LOG:: ${statement}`);
+      }
+      
+      printNumsAndStrings(23); // o/p LOG: 23
+      printNumsAndStrings('two-three'); // o/p two-three
+
+      // Lesson 32 -  Type Narrowing
+      /**                - What if I want a function that takes param as union types and performs specific tasks for particular type
+       *                 - For that we have type guard, type guard is a conditional that checks if a variable is a certain type 
+       *                 - type guard (typeof parameterName == data)
+      */
+
+      function hubID(param: string | number ){
+          // param may be string or number let's say if it is string then print it as hubID is now string
+          // with type guard and === comparison operator it strictly checks data type and data value
+          if(typeof param === 'string'){
+              return ` hub is currently in ${param} state and !` + param.toUpperCase();
+          }
+          return `hub is currently in ${param} state`;
+      }
+
+      hubID("string"); // o/p must be hub is currently in string state and STRING
+      hubID(659);
+      // what has happend with return ` hub is currently in ${param} state and !` + param.toUpperCase(); is that it can perform the methods of string
+
+     function exampleErrhub(par: boolean | number ){
+         if(typeof par === 'number'){
+             return par.toExponential();
+         }
+         return par.toExponential(); // see error as .toExponential() method doesnot exist outside the number methods
+         // what is happening is that par is now no more number type and our function is not accepting the toExponential method
+         // And this concept is called typeNarrowing in Ts
+     }
+     exampleErrhub(855);
+
+     function htY(yt: string | number ){
+         if(typeof yt === 'number'){
+             return yt.toString();
+         }
+         else if(typeof yt === 'string'){
+             return yt.slice();
+         }
+     }
+
+     htY(9654);
+     htY("I am tired now!");
+
+     //https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/type-narrowing
+     /** Day - 43             
+      * 
+      */
 
     
 
