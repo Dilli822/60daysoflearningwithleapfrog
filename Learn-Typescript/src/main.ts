@@ -3930,11 +3930,97 @@ function getUserName(name: string, caste: string): string{
      htY("I am tired now!");
 
      //https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/type-narrowing
-     /** Day - 43             
-      * 
+     /** Day - 43   - Contiue Lesson 32 - 34
+      *             - Type narrowing examples
+      *             - Inferred Union Return Types
+      *             - Unions and Arrays   
       */
 
-    
+      function formatValue(value: string | number) {
+        // Write your code here
+        if(typeof value === 'string'){
+          console.log(value.toLowerCase());
+        }
+        else if(typeof value === 'number'){
+          console.log(value.toFixed(2))
+        }
+      
+      }
+      
+      formatValue('Hiya');
+      formatValue(2);
+
+      /// lesson 34  - Inferred Union Return Types
+      /**                - One of the awesome things about Typescript is that it's able to infer types in many cases 
+       *                 - It auotmate the return type of functions by looking at the contents of function
+       *                 - If there are multiple possible return types it will infer the return type as a union.
+       *     Take an example below which is inferred return type
+       */
+      function getGuitarFromStore(){
+          return 'This is guitar';
+      }
+
+      function getGuitars(){
+          try{
+              return getGuitarFromStore();
+          }
+          catch(error){
+              return ` Something went error${error}`;
+          }
+      }
+
+      // IF this function is sucessful it will return string function getGuitarFromStore
+      // if call function fails it will return string defining error message
+      type Usery = {
+        id: number;
+        username: string;
+      };
+      
+      function createUser() {
+        const randomChance = Math.random() >= 0.5;
+      
+        if (randomChance) {
+          return { id: 1, username: 'nikko' };
+        } else {
+          return 'Could not create a user.';
+        }
+      }
+      let userDatas: Usery|string = createUser();
+
+      // Lesson 35 - UNions and Arrays
+      /**             - They became more powerful when used in combination with arrays.
+       *              - Unions helps to create array of different types inside the parenthesis which helps in more customization.
+       *              - SYNTAX CAN BE (string | number ) []
+       *              - It supports multiple types for an array's values, wrap the union in Parentheses
+       */
+      // Examples
+       const dateNumber = new Date().getTime(); // returns a number
+       const dateString = new Date().toString(); // returns a string
+        
+       const timesList: (string | number)[] = [dateNumber, dateString];
+
+       function formatListings(listings: (string | number)[]) {
+        return listings.map((listing) => {
+          if (typeof listing === 'string') {
+            return listing.toUpperCase();
+          }
+      
+          if (typeof listing === 'number') {
+            return `$${listing.toLocaleString()}`;
+          }
+        });
+      }
+      
+      const result = formatListings([
+        '123 Main St',
+        226800,
+        '580 Broadway Apt 4a',
+        337900,
+      ]);
+      
+      console.log(result);
+
+      //https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/unions-and-arrays
 
 
 
