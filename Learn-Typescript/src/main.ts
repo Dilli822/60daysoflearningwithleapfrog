@@ -1,3 +1,4 @@
+import { Light } from "@mui/icons-material";
 
 var a = "Hello From Typescript";
 
@@ -4022,15 +4023,112 @@ function getUserName(name: string, caste: string): string{
 
       //https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/unions-and-arrays
 
+      /** Day-44      - Continue Lesson 35 - 38 
+       *              - Common Key Value Pair
+       *              - Union with Literal Types
+       */
 
+      // Lesson 36 - Intro to Common key value Pairs,
+      /**              - Putting type members in union like this const variableName: type1 | type2 = value;
+       *               - suppose type1 is string and type2 is number now we can access all the methods and properties of number and string data type only.
+       * 
+       */
+      const collegeStatus: boolean | number = false;
 
+      collegeStatus.toString(); // No Typescript error
+      collegeStatus.toFixed(); // Typescript error see Property 'toFixed' does not exist on type 'false'.
+      collegeStatus.valueOf();
 
+      const studentStatus: string | number; // since studentStatus can be string or number Typescript will allow us to call methods of those data types
+      const funGhoust: undefined | null;
 
+      // Same rule applies to type objects that we defined above:
+      
+      type Marvel = {
+          isFamous: boolean;
+          isWorldWide: boolean;
+          isAuthorAlive: boolean;
+          isComedy: boolean;
+      }
+
+      type Pixabay = {
+          isFamous: boolean;
+          isCartoon: boolean;
+      }
+
+      const bothExamples: Marvel | Pixabay = { isFamous: true };
+
+      console.log(bothExamples.isFamous); // no error
+      console.log(bothExamples.isCartoon); // error as --> Property 'isCartoon' does not exist on type 'Marvel'.
+
+      // we can call isFamous from anywhere with bothExamples whichis variable but we cannot call isCartoon as it is only property in Pixabay 
+      
+      // there are two union types Like and Share same as key value pair
+      type Like = {
+        username: string;
+        displayName: string;
+      };
+      
+      type Share = {
+        username: string;
+        displayName: string;
+      };
+      
+      function getFriendNameFromEvent(event: Like | Share) {
+        return event.displayName || event.username;
+      }
+
+      // initializing the union types inside the variableName newEvent
+      
+      const newEvent: Like | Share = {
+        username: 'vkrauss',
+        displayName: 'Veronica Krauss',
+      };
+      
+      const friendName = getFriendNameFromEvent(newEvent);
+      console.log(`You have an update from ${friendName}.`); // O/P You have an update from Veronica Krauss.
+
+      // Lesson 37 - Unions with Literal Types
+      /**           - Literal types can be used with Typescript unions.
+       *            - Literal type unions are useful when we want to create distinct states within a program
+       * 
+       */
+
+      type Lights = 'violet' | 'indigo' | 'red';
+
+      function collectionLights(_lights: Lights){
+          // .. logics here
+          // we can specify about the states that is not valid stoplight color.
+      }
+
+      function offLights(virgo_name: Lights){
+          // this technique allows us to write functions that are specific about the states they can handle
+          // that makes code less to prone
+          return `this is virgo_name's${virgo_name}  light `;
+      }
+      virgo_name('red');
 
         
-        
+    // let's see an example
+    type Status = 'idle' | 'downloading' | 'complete';
+    
+    function downloadStatus(status:Status){
+        if(idle ==='idle'){
+            console.log('Download');
+        }
+        else if(downloading === 'downloading'){
+            console.log('Downloading...');
+        }
+        else if(complete === 'complete'){
+            console.log('Your download is complete!');
+        }
+    }
+    downloadStatus('complete'); // Your download is complete!
+    downloadStatus('idle');// Download
 
-
+    // https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/unions-with-literal-types
+    
+    // Day 45
 
 
         
