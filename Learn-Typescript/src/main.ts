@@ -4128,8 +4128,148 @@ function getUserName(name: string, caste: string): string{
 
     // https://www.codecademy.com/courses/learn-typescript/lessons/union-types/exercises/unions-with-literal-types
     
-    // Day 45
+    /** Day 45    - Reviews
+     *            - Lesson 38 - 40
+     *            - More on Type Narrowing
+     *            - Type guard
+    **/
 
+   // Reviews on Unions
+   // Learned variety of wats to create types that are as specific as we need with unions
+
+   /* 1. WIth vertical bar character | we can combine more than one types which is syntac for definning union.
+       Type that are presnet inside the union are type memeber.
+   */
+   let hellos: (string | number) = "type";
+   //             member   member 
+
+   /* 2. Type narrowing - We can use methods & properties of type with it.
+                        It allows us to type a variable as a union
+    */
+   let your_name: string | number = "dilli";
+   your_name.toLocaleLowerCase();
+   your_name.lastIndexOf; // accessing string methods
+   your_name = 822; 
+   your_name.toString(); // accessing number properties
+
+   /* 3. typeguard - It guard the specific memeber type of union variable which means methods and properties is also controlled by it.
+   */
+   if(typeof your_name == 'string'){
+       console.log(typeof(your_name)); // double checking type here
+       console.log("yes it is string!");
+   }
+   else if(typeof your_name == null){
+       const err = "erro found";
+       console.log(err);
+   }
+
+   // 4. If function return mutliple types, Ts will infer all possible return types as union
+   let uniO: string | number = "para one";
+   let paraP: string | boolean = false;
+   function multiInfer(paraOne: string, paratwo: boolean){
+       return `${paraOne} + ${paraP}`;
+   }
+   multiInfer("your name", false);
+
+   // 5. Defining states within program by using literal types and unions
+   type nity = {
+       name: string,
+       id: number,
+       address: string | null,
+   }
+   let strs: nity;
+   strs.address = "address not found";
+   strs.id = 822;
+
+   // Lesson 38 - MOre on Type narrowing
+   /*              - Suppose we have object detector that detects fragile, letter & heavy objects only.
+                   - We receive daily 500 -600 objects which could only be one of them for if our object is letter 
+                     it will be sent to letter box, if it is heavy it will be sent to heavy box and for fragile same.
+                - Typescript checks the variable types and compile it. Even if it runtime error during compilation
+                  it will parse ts code to js. It has ability to evaluate how our runtime code will perform ad infer variable types for us.
+    */
+   // while using union we have more than one type and suppose I want only one type inside the function same as above machine which accepts all three 
+   // object types but separates while it is inside the filtration process for that type narrowinng comes in rescue 
+   function ourMachine(items: string | number | boolean){
+       // items can be string or number or boolean let's filter them
+       if(typeof items == 'string'){
+           console.log("this is letter");
+       }
+       else if (typeof items == 'number'){
+           console.log("this is fragile")
+       }
+       console.log("this is heavy boolean object");
+   }
+   // if any condition met inside the funciton ourMachine type narrowing occurs and allow type methods accessing
+   ourMachine("letters"); 
+   // this shows typescript can infer more specific types based on the variable's surrounding code.
+
+   function yout(juice: string | number | null){
+       if(typeof juice == 'string'){
+           console.log("juice is" + `${juice}`);
+       }
+       else if(typeof juice == 'number'){
+           console.log("real juice number is " + `${juice}`);
+       }
+       console.log("no juice and value is " +`${juice}`);
+    }
+    yout("real");
+    yout(4814);
+    yout(null);
+
+    function guitarsG(guitar: string | number){
+       if(typeof guitar == 'string' && typeof guitar == 'number'){
+           console.log(`guitar's name is ${guitar} and guitar's model number is` + ` ${guitar}`);
+       }
+       else if(typeof guitar == 'string'){
+           return ` no model number not found but only guitar's name ${guitar}`;
+       }
+    }
+    guitarsG("les paul" + 1999);
+    guitarsG("lespaul");
+
+    // Lesson 39 - Type guards
+    /**            Typescript can narrow a type is with only conditional statement that checks if a variable is a specific type
+    *             This pattern is called a type guard. We are using typeof operator but it can use variety of operators that checks for a variable's type.
+    */
+     function nuni(date: string | number){
+         if(typeof date == 'string'){
+             console.log("data is in the form of string" +`${date}`);
+         }
+         console.log("date is in the form of number " + `${date}`);
+     }
+     // our function knows that it may be string or number and infer function return types depending upon arguments
+     // with type narrowing we are becoming more specific 
+     nuni("2022/05/28");
+     nuni(20220528);
+
+     // Examples: see below code which is broken 
+     function formatStatisticN(stat: string | number) {
+          return stat.toFixed(2); // program logics broken  here as in this line function doesnot know stat is number
+      }
+      
+      console.log(formatStatisticN('Win'));
+      console.log(formatStatisticN(0.364));
+
+    // with type narrowing correcting the function formatStatistics
+     function formatStatistic(stat: string | number) {
+        if(typeof stat == 'number'){
+          return stat.toFixed(2);
+        }
+        else if(typeof stat == 'string'){
+          return stat.toUpperCase();
+        }
+      
+      }
+      
+      console.log(formatStatistic('Win'));
+      console.log(formatStatistic(0.364));
+
+      //https://www.codecademy.com/courses/learn-typescript/lessons/typescript-type-narrowing/exercises/type-guards
+
+      /** Day - 46      - Continue Lesson 39
+      
+      */
 
         
 
