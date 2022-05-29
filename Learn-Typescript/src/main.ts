@@ -1,4 +1,4 @@
-import { Light } from "@mui/icons-material";
+import { CardMembership, Light } from "@mui/icons-material";
 
 var a = "Hello From Typescript";
 
@@ -4267,9 +4267,196 @@ function getUserName(name: string, caste: string): string{
 
       //https://www.codecademy.com/courses/learn-typescript/lessons/typescript-type-narrowing/exercises/type-guards
 
-      /** Day - 46      - Continue Lesson 39
-      
+      /** Day - 46      - Continue Lesson 40 - 42
+       *                - using in with Type Guards
+       *                - Narrowing with else
+       *                - Narrowing After a Type Guard
       */
+
+      // Lesson 40   - Using in with Type Guards
+      /**              - Writing more types leads us to do more customization in our code.
+       *               - 'in' operator comes into play when we want to see if a specific method exists on a type instead of a type like 'string'.
+       *               - as we know typeof operator helps us pretty much but what if want to see if specific method is really existing inside the types 
+       *               - for example if type is string do string has xyz method existing inside the type
+       */
+       // Examples 
+        type football = { // object types with properties
+            kickoff: () => void;
+        }
+
+        type volleyball = {
+            serve: () => void;
+        }
+
+        function play(sport: volleyball | football){
+            if('kickoff' in sport){ // condition checking method exists inside th type??
+                return sport.kickoff(); // returning the method
+            }
+            if('serve' in sport){
+                return sport.serve();
+            }
+        }
+
+        type fish = {
+            goldenFish: () => void;
+        }
+
+        type bird = {
+            chicken: () => void;
+        }
+
+        function findBF(fish_bird: fish | bird){
+            if('goldenFish' in fish_bird){ // type narrowing is possible because Typescript recoginzes in as a type guard
+                return fish_bird.goldenFish();
+            }
+            if('chicken' in fish_bird){
+                return fish_bird.chicken();
+            }
+        }
+        // types cat and fish 
+        type Cat = {
+            name: string;
+            run: () => string;
+          }
+          
+          type Fish = {
+            name: string;
+            swim: () => string;
+          }
+          
+          const siameseCat = { 
+            name: 'Proxie', 
+            run: () => 'pitter pat'
+          }
+          
+          const bettaFish = { 
+            name: 'Neptune', 
+            swim: () => 'bubble blub'
+          }
+        // here function move having parameters as type Cat and Fish
+        function move(pet: Cat | Fish) {
+            if('run' in pet){
+             return pet.run();
+            }
+            if('swim' in pet){
+              return pet.swim();
+            }
+          
+          }
+          
+        console.log(move(siameseCat));
+       // Lesson 41   - Narrowing with else
+       /**               - In the previous Lesson we have used type narrowing with in using only else
+        *                - we can also use if/else in typescript narrowing
+        * Since TypeScript can understand how our code will work at runtime, it’s able to infer specific types
+        * for us, like with the else of an if/else statement.
+       */
+
+       function formalPirates( members: string | number ){
+           if(typeof members === 'string'){
+               return members.toLowerCase();
+           } else{
+               return `this is ${members} all.`;
+           }
+       }
+       formalPirates("luffy");
+       formalPirates(48774);
+
+
+       type Pasta = {
+        menuName: string;
+        boil: () => string;
+      }
+      
+      type Meat = {
+        menuName: string;
+        panFry: () => string;
+      }
+      
+      const fettuccine = {
+        menuName: 'Fettuccine',
+        boil: () => 'Heat water to 212 degrees',
+      }
+      
+      const steak = {
+        menuName: 'New York Strip Steak',
+        panFry: () => 'Heat oil to 350 degrees',
+      }
+      
+      function prepareEntree(entree: Pasta | Meat) {
+        if('boil' in entree){
+         return entree.boil();
+        }
+        else if('panFry' in entree){
+          return entree.panFry();
+        }
+      }
+      
+      console.log(prepareEntree(fettuccine));
+
+      // Lesson 42 - Narrowing After a Type Guard
+      /**             - Typescript's  ability to infer types after a type guard stretches even further than inferring the type within else statement
+       *              - It can type narrow without an else statement
+      */
+
+       type Metal = {
+        magnetize: () => string;
+      }
+      
+      type Glass = {
+        melt: () => string;
+      }
+      
+      const iron = {
+        magnetize: () => 'Electromagnet activated'
+      }
+      
+      const bottle = {
+        melt: () => 'Furnace set to 2,700 degrees'
+      }
+      
+      function recycle(trash: Metal | Glass) {
+        // Add your code below:
+        if ('magnetize' in trash) {
+        return trash.magnetize();
+        }
+    
+        return trash.melt(); // typescript will infer to type glass without else statement
+      }
+      
+      console.log(recycle(iron));
+      
+      type stones = {
+          stop: () => string;
+      }
+
+      type water = {
+          allow: () => string;
+      }
+
+      function filter(items: stones | water){
+          if('stop' in items){
+              return items.stop();
+          }
+          return items.allow();
+      }
+      console.log(filter(stones)); // error as --> 'stones' only refers to a type, but is being used as a value here.
+      const stones = {
+          stop: () => 'stones are not allowed!'
+      }
+      console.log(filter(stones)); // see no error
+
+      /** https://www.codecademy.com/courses/learn-typescript/lessons/typescript-type-narrowing/exercises/review-type-narrowing
+       * 
+       * Day - 47    -
+       * 
+       */
+
+
+
+
+
+
 
         
 
