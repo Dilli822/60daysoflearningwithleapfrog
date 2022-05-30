@@ -4448,9 +4448,88 @@ function getUserName(name: string, caste: string): string{
 
       /** https://www.codecademy.com/courses/learn-typescript/lessons/typescript-type-narrowing/exercises/review-type-narrowing
        * 
-       * Day - 47    -
+       * Day - 47    - Reviews Type Narrowing
+       *             - Lesson 43 - 
+       *             - Introduction to object types
+       */
+
+      /* 1. Type narrowing - Tyescript can understand how our code will execute at runtime so that it can infer more specific types while we write code. */
+      function runTime(timing: number | string){
+          if(timing === 'number'){
+              return `Runing Time is ` + ` ${timing}`;
+          }
+          return `Runing Time in words ` + ` ${timing}`;
+      }
+      runTime(615);
+      runTime("2minutes15seconds");
+
+      // 2. An expression that checks if a variable is a specific type is called type guard. Type guard allow Ts to identify when it can type narrow.
+      function myAges(age: number | undefined){
+          if(typeof myAge === 'number'){ // typeof is type guard here
+              return ` yes my age is ` + `${age}`;
+          }
+          return `my age is ` + `${age}`;
+      }
+      myAges(23);
+      myAge();
+
+      // 3. typeof operator is very useful it can check if a variable is string, number, boolean or symbol.
+      function uini(utems: null | number){
+          if(typeof utems == 'number'){
+              return `you typed ${utems}`;
+          }
+          return `error null`;
+      }
+      uini(null);
+      uini(845);
+
+      // 4. in operator is useful for checking if a specific property exists on an object.
+      type web_dev = {
+          script: () => void;
+      }
+
+      type app_dev = {
+          flutter: () => void;
+      }
+
+      function dev(develop: web_dev | app_dev){
+        if("script" in develop){
+            return develop.script();
+        }
+        return develop.flutter();
+      }
+
+      // 5. Typescript can type narrow after a type guard with else block. It understands itself if () statment is
+      //     used but else is not then return will work else statement and else is inverse of if statement.
+
+      type machine_learning = {
+          python: () => void;
+      }
+      type AI = {
+          modeling: () => void;
+      }
+
+      function sector(fields: machine_learning | AI){
+          if("python" in fields){
+              return ` python is best for machine learning` + fields.python();
+          }
+          else if("modeling" in fields){
+              return ` AI is artificial intelligene ` + fields.modeling();
+          }
+          return `nothing to show`;
+      }
+
+      // Lesson 43 - Introduction to object types
+      /**              - so far we have studied so many technique and ways to write the types in our code.
+       *               - writing correct Typescript means applying correct types in every situation.
        * 
        */
+      class Monkey {
+          identify(species: string){
+              console.log(`This animal is ${species}`);
+          }
+      }
+      // above is a class Monkey and now we learn how to deal types with advanced object types with OOP Patterns.
 
 
 
