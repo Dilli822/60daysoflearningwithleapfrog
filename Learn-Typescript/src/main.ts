@@ -4532,6 +4532,153 @@ function getUserName(name: string, caste: string): string{
       // above is a class Monkey and now we learn how to deal types with advanced object types with OOP Patterns.
 
 
+      /** Day - 48   - COntinue Lesson 44 - 45
+       *             - Types and interfaces
+       *             - Interfaces and Classes
+      */
+      
+       // Lesson 44 - Types and interfaces
+       /**           - Typescript allow us to define the types in a various way. like with type keyword we can define the object types.
+        *            - similar we have interface which is used for defining types. Types and interfaces both have similar utilization
+        *      type objectU and interface objectT has different syntax like interface doesnot have = equal sign 
+        */
+
+       // this is type
+       type objectU = {
+           firstOrder: string,
+           secondOrder: number,
+           thirdOrder: boolean,
+       }
+       let myu: objectU;
+
+       // this is interface
+       interface objectT {
+           firstOrder: string,
+           secondOrder: number,
+           thirdOrder: boolean,
+       }
+       let myTr: objectT;
+
+       interface footballF {
+           players: number,
+           coach: number,
+           clubName: string
+       }
+
+       const nyt: footballF;
+       nyt.clubName = "Liverpool";
+
+       /* BOTH HAVE IDENTICAL USE BUT TYPE IS MORE FLEXIBLE THEN INTERFACE AS TYPES ALLOWS TO DEFINE OBJECT TYPES, PRIMITIVE DATA TYPES & MORE.
+          WHILE INTERFACE ONLY DEFINE THE OBJECT TYPE.
+       */
+
+    // Interface are used when we only want to work with object types which is best fit while doing object-oriented programming
+    // Write an interface here
+    interface Run{
+        miles: number;
+    }
+  
+    function updateRunGoal(run:Run) {
+        console.log(`
+           Miles left:       ${50 - run.miles}
+          Percent of goal:  ${(run.miles / 50) * 100}% complete`)
+        }
+        updateRunGoal({
+            miles: 5,
+    })
+
+    interface Watch{
+        time: number | string;
+    }
+
+    function updateRunTime(watch: Watch){
+            console.log(`${watch} seconds: $((watch.time / 60)`);
+        }
+        updateRunTime({
+                time: 145,
+    })
+
+    // Lesson 45  - Interfaces and Classes
+    /*               - Interface keyword in Ts is especially good for adding types to a class.
+                     - They are constrained to typed objects.
+                     - Using class with interface are a great match.
+                     - How to use interface and class together with implement keyword we can use both of them. 
+    */
+
+    interface Machine {
+        identify: (id: number) => void;
+    }
+
+    // applying type Machine to the class OneSeries with implement keyword
+
+    class OneSeries implements Machine {
+        identify(id: number){ // here class is matching the methods of interface
+            console.log(`Beep! I'm ${id.toFixed(2)}.`);
+        }
+        // creating custom methods or properties inside the class OneSeries
+        answerQuestion(){
+            console.log('56!');
+        }
+    }
+
+    // creating interface with idNumber properties which is void function
+    interface Mobile {
+        idNumber: (id: number) => void;
+    }
+    // creating class and implementing the Mobile Interface
+    class FullSeries implements Mobile {
+        idNumber(id: number){ // inteface and implements allows to create types that match a variety of class patterns
+            console.log(`this is ${id.toString()}`);
+        }
+        // creating custom methods inside the class
+        waitingAnswer(){
+            console.log(822);
+        }
+    }
+
+    // Create a interface and method inside it of type function which returns void.
+    // Write an interface here
+    interface Directory {
+        addFile: (name: string) => void;
+      }
+
+    class DesktopDirectory implements Directory{
+        addFile(name: string) {
+            console.log(`Adding file: ${name}`);
+    }
+  
+    showPreview(name: string) {
+      console.log(`Opening preview of file: ${name}`);
+     } }
+  
+    const Desktop = new DesktopDirectory();
+  
+    Desktop.addFile('lesson-notes.txt');
+    Desktop.showPreview('lesson-notes.txt');
+
+    interface Home {
+        addLocation: (name: string) => void;
+    }
+    
+    class KnowMyHome implements Home{
+        addLocation(name: string) {
+            console.log(`Adding Home's location: ${name}`);
+        }
+        
+        callingHome(name: string){
+            console.log('calling my home address' + `${name}`)
+        }
+    }
+
+    const finalHome = new KnowMyHome();
+    finalHome.addLocation('Itahari');
+    finalHome.callingHome('Nepal');
+
+    //https://www.codecademy.com/courses/learn-typescript/lessons/typescript-advanced-object-types/exercises/interfaces-and-classes
+    
+
+
+
 
 
 
