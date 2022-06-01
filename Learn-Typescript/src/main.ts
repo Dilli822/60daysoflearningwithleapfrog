@@ -4676,6 +4676,196 @@ function getUserName(name: string, caste: string): string{
 
     //https://www.codecademy.com/courses/learn-typescript/lessons/typescript-advanced-object-types/exercises/interfaces-and-classes
     
+    /** Day - 49      - Lesson 46 - 47
+     *                - Deep Types (working with class + props + interface)
+     *                - Composed Types - interface inside interface
+     *                - working with interface and composed object types
+    */
+   
+    // Lesson 46  - Deep Types
+    /**                - as our code and program grow and become more complex we will have more methods and properties to our objects.
+    *                 - we need to add , modify and accomodate more features
+    *                 - infact we need nested methods and properties, Let's take an example by looking into class 
+    */
+
+    //  class OneSeries is implementing the Robot interface having...
+    class Onees implements Robot {
+        about; // about property which is an object within a nested object.
+
+        // constructing the class id and name 
+        constructor(props: { general: { id: number; name: string; } }) { 
+          this.about = props; // passing as props
+        }
+        // returning getRobotId() function this.about.general.id 
+        getRobotId() {
+          return `ID: ${this.about.general.id}`;
+        }
+    }
+
+    // with typescript using interface we could type an object nested inside another object 
+    interface Robot {
+        about: { // about property inside the robot interface
+            general: { // general typed object inside the about typed object
+                id: number;
+                name: string;
+            };
+        };
+        getRobotId: () => string;
+    }
+    // this above code shows that nested objects is supported in Typescript
+
+    class Uiy implements War {
+        events;
+        
+        constructor(props: { modern: { start: number | string ; present: string | number; }}){
+            this.events = props;
+        }
+
+        getModernHistory(){
+            return `Modern-History: ${this.events.modern.start}` + `${this.events.modern.present}`;
+        }
+    }
+
+    interface War{
+        events: {
+            modern: {
+                start: number | string;
+                present: string | number;
+            }
+        }
+    }
+
+    // Sample Example
+    interface Directory {
+        addFile: (name: string) => void;
+        // Define a config type member here
+        config: {
+            default: {
+                encoding: string;
+                permissions: string;
+            }
+        }
+    }
+    
+    class DesktopDirectorys implements Directory {
+        config = {
+            default: {
+                encoding: 'utf-8',
+                permissions: 'drw-rw-rw-',
+            }
+        }
+
+      addFile(name: string) {
+        console.log(`Adding file: ${name}`);
+       }
+
+       showPreview(name: string) {
+        console.log(`Opening preview of file: ${name}`);
+       }
+    }
+
+    const DesktopT = new DesktopDirectorys();
+    console.log(DesktopT.config);
+
+    // Lesson 47  - Composed Types
+    /**               - Composing types together is an essential way to keep our code organized and flexible.
+     *                - we can use interface inside the interface , and members can also explicitly define type as interface
+     *     # Why to use Composed Types?
+     *         - As our data gets nested deeper in big projects it is difficult to read and write the code
+     *         - Composed types allows us to compose types where we can define multiple types and reference them inside other types.
+     *         - using specific method or object type is possible with composed types
+    */
+    
+    interface Avot{
+        dont: string; // normal membert types
+        general: _General; // general member as interface objec types composing inside it
+    }
+
+    interface _General {
+        id: number;
+        name: string;
+        version: Version;
+    }
+
+    interface Version{
+        versionNumber: number;
+    }
+
+    // Sample Example
+    interface Directory {
+        addFile: (name: string) => void;
+        config: Config;
+      }
+      interface DefaultConfig {
+        encoding: string;
+        permissions: string;
+      }
+      interface Config {
+        default: DefaultConfig;
+      }
+    
+    // Sample Example
+    class DesktopDirectoryo implements Directory {
+        config = {
+          default: {
+            encoding: 'utf-8',
+            permissions: 'drw-rw-rw-',
+          }
+        }
+      
+        addFile(name: string) {
+          console.log(`Adding file: ${name}`);
+        }
+      
+        showPreview(name: string) {
+          console.log(`Opening preview of file: ${name}`);
+        }
+      }
+      
+      const Desktopo = new DesktopDirectoryo();
+      
+      console.log(Desktopo.config);
+
+      interface mainInterface{
+          addGame: (name:string) => void;
+          mainf: mainF;
+      }
+
+      interface firstInter{
+          game: string;
+          counter: number;
+      }
+
+      interface mainF{
+          default: firstInter;
+      }
+
+      class mainGame implements mainInterface {
+          mainf = {
+              default: {
+                  game: 'basketball',
+                  counter: 7,
+              }
+            }
+            addGame(name: string){
+                  console.log(`adding game's name : ${name}`)
+              }
+
+            showPreGame(name: string){
+                  console.log(`opening preview of game: ${name}`)
+            }
+      }
+      
+      const jukiu = new mainGame();
+      console.log(jukiu.addGame);
+      console.log(jukiu.showPreGame);
+    
+      // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-advanced-object-types/exercises/composed-types
+    
+
+
+
+    
 
 
 
