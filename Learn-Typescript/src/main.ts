@@ -4861,9 +4861,145 @@ function getUserName(name: string, caste: string): string{
       console.log(jukiu.showPreGame);
     
       // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-advanced-object-types/exercises/composed-types
-    
+
+      /** Day -50     - Lesson 48 - 49
+       *              - Extending Interfaces
+       *              - Index Signatures
+       * 
+       * /
+       * 
+       // Lesson 48 - Extending Interfaces
+       /**             - This method is useful when we are writing too many interfaces and alterantive method for composed types
+        *              - It is widely used when we want to copy the particular all type to another type
+        *              - with extends keyword we can copy the one types properties and methods to another types
+        */
+       // example
+       interface medit {
+           time: string | number;
+       }
+
+       // extending medit interface with new_medit
+       interface new_medit extends medit{
+           report: string;
+       }
+
+       // now new_medit copied the object types and members of medit and possess same properties and methods
+       const extend_interface: new_medit = {
+           time: 450, report: 'string'
+       };
+       // Using extends can help us organize our code by abstracting out common 
+       // type members into their own interface, then copying them into more specific types.
+
+       interface my_pc {
+           specs: string;
+       }
+       interface pc extends my_pc {
+           generation: string;
+       }
+       const your_pc: pc = {
+           specs: "string", generation: "string"
+       }
+
+       // Example 
+       interface Developer extends Humane{
+        code: () => void;
+      }
+      
+      // Add your interface here
+      interface Humane{
+        name: string;
+        hobbies: string[];
+      
+      }
+      
+      const me: Developer = { 
+        code: () => console.log('Headphones on. Coffee brewed. Editor open.'),
+        name: 'Corrina', 
+        hobbies: ['Building rockets']
+      }
+      
+      me.code();
+
+      interface env extends myen {
+          sam: () => void;
+      }
+      interface myen{
+          username: string;
+          details: string[];
+      }
+      const ytt: env = {
+          sam: () => console.log('void function return none type');
+          username: 'username',
+          details: ['element1', 'element2', 'element3']
+      }
+
+      // Lesson 49  - Index Signatures
+      /**             - Index signature is one of the most important feature in Typescript.
+       *              - In real world when we play with apis, we may not know what type of data will api return we know data will come but doesnot know what type it would be.
+       *              - It is a way of fitting and handling the objects & properties which we know nothing.
+       *              - It is useful to write an object type that allows us to include a variable name for the property name. This feature is called index signatures.
+       */
+      // this is data we get from api which key value pair having latitude value and boolean only
+      {
+        '40.712776': true; // here we donot know the latitude name
+        '41.203323': true;
+        '40.417286': false;
+      }
+      // so we need object type name here to do that we need index signature
+      // syntac is { [string]: boolean }
+
+      interface knowLat {
+          [latitude: string]: boolean // here [latitude: string] defines every latitude property name as string with value boolean type
+      }
+       // sample api returning us this data
+       {
+        'shopping': 150,
+        'food': 210,
+        'utilities': 100
+      }
+
+      import { getBudgetAsync } from './api';
+      // Write an interface here
+       interface Budget{
+          [category: string]: number;
+        }
+       
+        async function getBudget() {
+           const result: Budget = await getBudgetAsync();
+           console.log(result);
+        }
+        
+        getBudget();
+
+         {
+            'parrot': true; // here we donot know the latitude name
+            'dogs': true;
+            'dolphin': false;
+          }
+
+          interface knowAnimal {
+              [animals: string]: boolean // here [latitude: string] defines every latitude property name as string with value boolean type
+          }
+
+           {
+            'running': 150,
+            'jumping': 210,
+            'visiting': 100
+          }
+        // Write an interface here
+        interface Burns{
+            [category: string]: number;
+        }
+        
+        async function getHyr() {
+               const result: Burns = await getBudgetAsync();
+               console.log(result);
+        }
+            
+        getHyr();
 
 
+      
 
     
 
