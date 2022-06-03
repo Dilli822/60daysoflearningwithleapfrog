@@ -4865,7 +4865,6 @@ function getUserName(name: string, caste: string): string{
       /** Day -50     - Lesson 48 - 49
        *              - Extending Interfaces
        *              - Index Signatures
-       * 
        * /
        * 
        // Lesson 48 - Extending Interfaces
@@ -4937,7 +4936,8 @@ function getUserName(name: string, caste: string): string{
       /**             - Index signature is one of the most important feature in Typescript.
        *              - In real world when we play with apis, we may not know what type of data will api return we know data will come but doesnot know what type it would be.
        *              - It is a way of fitting and handling the objects & properties which we know nothing.
-       *              - It is useful to write an object type that allows us to include a variable name for the property name. This feature is called index signatures.
+       *              - It is useful to write an object type that allows us to include a variable name for the
+       *                property name. This feature is called index signatures.
        */
       // this is data we get from api which key value pair having latitude value and boolean only
       {
@@ -4990,15 +4990,177 @@ function getUserName(name: string, caste: string): string{
         interface Burns{
             [category: string]: number;
         }
-        
+
         async function getHyr() {
                const result: Burns = await getBudgetAsync();
                console.log(result);
         }
-            
         getHyr();
 
+        // https://www.codecademy.com/courses/learn-typescript/lessons/typescript-advanced-object-types/exercises/index-signatures
 
+        /** Day -51    - Lesson 50 - Reviews
+         *             - Optional Type Members
+         *             - Reviews on Advanced Object Types
+        */
+
+        // Lesson 50 - Optional Type Members
+        /**            - In programmming we create function or class which take arguments 
+         *             - not every time we compulsory need arguments some of which are required and some that are optional.
+         *             - when we use interface type members are compulsory required however typescript allows us to make some type members optional.
+         *   syntax for optional or option operator is ? 
+         *   - we are using ? after the property name and before the colon(:) 
+         */
+
+        interface optionExample {
+            name: string;
+            size?: string;
+            color?: string | number;
+        }
+
+        function allList(options: optionExample){
+            let fileName = options.name;
+
+            if(options.size){
+                fileName = `${fileName}: ${options.size}`;
+            }
+            return fileName;
+        }
+
+        allList({ name: 'NAME' }) // now size and color has become optional
+        
+        // example showing using optional type members as parameters
+        // Write an interface here
+        interface UserNameOptions {
+            firstName?: string;
+            lastName?: string;
+            username: string;
+        }
+        
+        function getUserNamee(options: UserNameOptions) {
+            if (options.firstName && options.lastName) {
+                return console.log(`${options.firstName} ${options.lastName}`);
+            }
+            return console.log(options.username);
+        }
+        
+        getUserNamee({
+            firstName: 'Mr.',
+            lastName: 'Oshiro',
+            username: 'hotelowner304'
+        })
+        
+        getUserNamee({
+            firstName: 'Madeline',
+            username: 'mountainClimber'
+        })
+
+        interface appleProducts{
+            laptop?: string;
+            iphone?: string;
+            ipad: string;
+        }
+
+        function getAppleProducts(options: appleProducts){
+            if(options.laptop && options.iphone){
+                return console.log(`${options.iphone} ${options.laptop}`);
+            }
+            return console.log(options.ipad);
+        }
+
+        getAppleProducts({ipad: 'ipad13'});
+
+        // Revies on Advanced Object Types
+        // 1. interface and type both keywords are used to declare types.
+        type yujh = {
+            stops: () => string; // function
+            play: () => void;
+            jukes: string;
+            jump: string | boolean;
+        }
+        
+        const userMe: yujh;
+        userMe.stops = () => "hello";
+        userMe.jump = "jumping from start at " + 4 + 'meter high';
+
+        interface exa_e {
+            born: string;
+            death: string;
+            age: string | number;
+        }
+
+        const show_e: exa_e;
+        show_e.age = 23;
+
+        // 2. Interface is great for typing objects, especially within OOP
+        interface shoe_OOP {
+            first:(param:string) => string;
+            first_members: string | number;
+            second_members: boolean;
+        }
+
+        // 3. Applying interface on a class using implements keyword
+        class muse implements shoe_OOP {
+            first(param:string): string{
+                return "this is string" + `${param}`
+            };
+            first_members = 'string';
+            second_members = false;
+        }
+
+        const openAct = new muse();
+        openAct.first('hello');
+
+        // 4. Objects types can be nested infinetly.
+        interface object_nest {
+            generalty:{
+                username: string;
+                age: number
+
+                another_me: {
+                    age: number;
+                    id: number;
+                }
+            }
+
+            complex: {
+                hello: boolean;
+                age: number;
+            }
+        }
+
+        // 5. Copy the type members of one interface inot another using the extends keyword
+        interface first_me {
+            name: string;
+            age: number;
+            disable: boolean;
+        }
+
+        interface second_me extends first_me {
+            // second_me has now all first_me now methods and properties 
+            great: () => string;
+        }
+
+        // 6. Index signature is a way of fitting the property names within an object type [propertyName: string]: string
+        id: {
+            '455454': false,
+            '11545454': true
+        }
+
+        interface lightUp{
+            [points: string]: boolean;
+        }
+
+        // 7. with option ? opertor it is possible to make optional type members
+        interface juh {
+            nuke?: string;
+            nump: number;
+        }
+
+        /*** Completed all syllabus of Typescript in Codecademy */
+  
+        
+        
       
 
     
