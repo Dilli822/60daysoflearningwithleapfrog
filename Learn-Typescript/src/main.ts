@@ -5158,6 +5158,9 @@ function getUserName(name: string, caste: string): string{
         }
 
         /*** Completed all syllabus of Typescript in Codecademy */
+        // Day 52 completed all the syllabus of Typescript
+        // From day 52 I will be doing small projects using Typescript 
+        // everyday new directory will be created
   
         
         
