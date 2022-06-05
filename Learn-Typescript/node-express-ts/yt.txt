@@ -1,0 +1,31 @@
+- int npm -y
+- install express
+   (installing type definition here too)
+- npm i --save-dev typescript @types/express @types/node
+(remember we need to have config file for ts to js transpilation)
+-- npx tsc --init
+ npx tsc --init
+
+Created a new tsconfig.json with:                                                               
+                                                                                             TS 
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+
+
+  outdir build
+  rootdir scr 
+
+
+  transpiling the code into ts by command npx tsc
+
+  finally serving on port with cmd node build/app.js
+  
+  checking http://localhost:3001/ returns Hello World
+  
+  "start": "npx tsc && node buidl/app.js",
+  adding this in package will transpile and build the app and ser
+
