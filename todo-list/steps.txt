@@ -1,0 +1,9 @@
+
+1. install node js
+2. install yarn or npm for package manager
+3. install react with typescript template
+4. created components 
+5. created interface, void functions, props and useState hooks
+6. checkbox with labelled information
+7. input field that takes input which is string data type and update in the DOM
+8. 
