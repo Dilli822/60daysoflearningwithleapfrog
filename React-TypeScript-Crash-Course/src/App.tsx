@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import RenderProps from "./components/render.Props";
+import AddToTable from "./components/AddToTable";
+import AddToList from "./components/AddToList";
+import OList from './components/oList';
+import List from "./components/List"
 
+// export interface Istate to pass it down to props for other components too
 export interface IState {
   people: {
       name: string
@@ -34,35 +39,18 @@ function App() {
     }
   ])
 
-  // ***** HANDLING FUNCTIONS 
-  // const renderList = () => { --> without any return type it will be void 
-  // Here we explicitly defined JSX.Element with array type will be returned by renderList function
-  const renderList = (): JSX.Element[] => {
-    return people.map((person) =>{
-      // return( ) what type? --> it is JSX Element type with Array
-      return(
-        <div>
-          <ul>
-           <li>{person.name}</li>
-           <li>{person.age} </li>
-           <li>{person.note}  </li>
-           <li>{person.img}</li>
-          </ul>
-        </div>
-      )
-    })
-  }
-
   return (
     <div className="App">
+      <OList people = {people} />
       <div>
-        <h3> This is returning renderList Function.</h3>
-        <ul> {renderList()} </ul>
+        {/* passing people and setPeople as props */}
+        {/* we are manipulating the state and setting people as setPeople */}
+        {/* pushing the new array object into the people which is existing one array objects */}
+        {/* <AddToTable people={people} setPeople={setPeople}/> */}
       </div>
 
       <div>
-        <h4> This is renderListProps! </h4>
-        <RenderProps/>
+      <AddToList people={people} setPeople={setPeople}/>
       </div>
 
     </div>

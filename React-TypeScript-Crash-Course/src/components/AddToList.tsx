@@ -6,7 +6,7 @@ interface IProps {
     people: Props["people"]
 }
 
-const AddToList: React.FC<IProps> = ({setPeople, people}) => {
+const AddToTableList: React.FC<IProps> = ({setPeople, people}) => {
 
     const [input, setInput] = useState({
         name: "",
@@ -80,10 +80,10 @@ const AddToList: React.FC<IProps> = ({setPeople, people}) => {
                 onClick={handleClick}
                 className="AddToList-btn"
             >
-                Add to List
+                Add to Table List
             </button>
         </div>
     )
 }
 
-export default AddToList
+export default AddToTableList;
