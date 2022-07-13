@@ -1,0 +1,27 @@
+
+$white: #fff;
+$primary-bgColor: #fff;
+
+.whiteBg{
+    background: $white;
+}
+img{
+    max-width: 100%;
+}
+
+.ant-layout{
+    &-sider,&-sider-children{
+        background: $primary-bgColor;
+    } 
+
+    &-sider-children{
+        position: fixed;
+        width: 200px;
+    }
+}
+
+.custom{
+    &NavHeader > button {
+        margin: 0 0.7rem;
+    }
+}

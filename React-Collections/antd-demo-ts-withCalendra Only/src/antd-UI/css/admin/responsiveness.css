@@ -1,0 +1,9 @@
+
+
+
+/* For Tablets View */
+@media (max-width: 767px){
+.ant-layout-sider{
+    display: none;
+}
+}
