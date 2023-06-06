@@ -71,7 +71,6 @@ int main(){
     printf("Popped %d from the stack \n", pop(sp));
     printf("Popped %d from the stack \n", pop(sp));
 
-    pop(sp,1);
 
 
     return 0;
