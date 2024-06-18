@@ -1,0 +1,67 @@
+[
+    {
+        "Rank": 1,
+        "Name": "Wii Sports",
+        "Platform": "Wii",
+        "Year": 2006.0,
+        "Genre": "Sports",
+        "Publisher": "Nintendo",
+        "NA_Sales": 41.49,
+        "EU_Sales": 29.02,
+        "JP_Sales": 3.77,
+        "Other_Sales": 8.46,
+        "Global_Sales": 82.74
+    },
+    {
+        "Rank": 2,
+        "Name": "Super Mario Bros.",
+        "Platform": "NES",
+        "Year": 1985.0,
+        "Genre": "Platform",
+        "Publisher": "Nintendo",
+        "NA_Sales": 29.08,
+        "EU_Sales": 3.58,
+        "JP_Sales": 6.81,
+        "Other_Sales": 0.77,
+        "Global_Sales": 40.24
+    },
+    {
+        "Rank": 3,
+        "Name": "Mario Kart Wii",
+        "Platform": "Wii",
+        "Year": 2008.0,
+        "Genre": "Racing",
+        "Publisher": "Nintendo",
+        "NA_Sales": 15.85,
+        "EU_Sales": 12.88,
+        "JP_Sales": 3.79,
+        "Other_Sales": 3.31,
+        "Global_Sales": 35.82
+    },
+    {
+        "Rank": 4,
+        "Name": "Wii Sports Resort",
+        "Platform": "Wii",
+        "Year": 2009.0,
+        "Genre": "Sports",
+        "Publisher": "Nintendo",
+        "NA_Sales": 15.75,
+        "EU_Sales": 11.01,
+        "JP_Sales": 3.28,
+        "Other_Sales": 2.96,
+        "Global_Sales": 33.0
+    },
+    {
+        "Rank": 5,
+        "Name": "Pokemon Red/Pokemon Blue",
+        "Platform": "GB",
+        "Year": 1996.0,
+        "Genre": "Role-Playing",
+        "Publisher": "Nintendo",
+        "NA_Sales": 11.27,
+        "EU_Sales": 8.89,
+        "JP_Sales": 10.22,
+        "Other_Sales": 1.0,
+        "Global_Sales": 31.37
+    }
+]
