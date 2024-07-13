@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # ColumnTransformer: This lets you apply different transformations (like scaling or encoding) to different columns of your data.
 # Pipeline: This lets you put multiple steps (like scaling and encoding) together in a sequence (or pipeline).
 # matplotlib.pyplot as plt: This is used for creating plots and graphs, like scatter plots or bar charts.
-#--------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 # Application of Naive Bayes
 # Given data
