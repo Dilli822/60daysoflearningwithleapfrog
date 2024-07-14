@@ -52,3 +52,4 @@ table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc
 
 plt.title("Probability of Being On Time for Different Scenarios")
 plt.show()
+#
