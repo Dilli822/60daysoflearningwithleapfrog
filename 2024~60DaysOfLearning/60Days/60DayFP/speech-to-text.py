@@ -1,5 +1,5 @@
 import speech_recognition as sr
-
+# Need Internet uses Google API for Speech to text translation
 def recognize_speech():
     # Create a recognizer object
     recognizer = sr.Recognizer()
